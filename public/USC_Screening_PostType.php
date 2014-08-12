@@ -38,7 +38,7 @@ class USCScreening_PostType extends AdminPageFramework_PostType {
                     'plugin_listing_table_title_cell_link'	=>	__( 'Screenings', 'usc-screenings' ),		// framework specific key. [3.0.6+]
                 ),
                 'public'			=>	true,
-                'description'       =>  'Screenings as Western Film.  Break out the popcorn!',
+                'description'       =>  'Screenings at Western Film.  Break out the popcorn!',
                 'menu_position' 	=>	6,  //below Posts
                 'supports'			=>	array( 'title', 'editor', 'thumbnail', 'excerpt' ), // 'supports' => array( 'title', 'editor', 'comments', 'thumbnail' ),	// 'custom-fields'
                 'taxonomies'		=>	array( '' ),

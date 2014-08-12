@@ -77,14 +77,25 @@ class USC_Screenings {
 		//add_filter( '@TODO', array( $this, 'filter_method_name' ) );
 
         $this->add_screenings_post_type();
+
+        add_action( 'init', array($this, 'not_much') );
 	}
+
+    public function not_much() {
+        add_theme_support( 'post-thumbnails', array( 'usc_screenings' ) );
+
+        //wp_die( var_dump( get_post_types( array(), 'names' ) ) );
+        //wp_die( var_dump( current_theme_supports( 'post-thumbnails', 'usc_screenings' ) ) );
+        //wp_die( var_dump( post_type_supports('usc_screenings', 'thumbnail') ) );
+
+    }
 
     /**
      * Creates a new Screening Post Type.  You should come watch.
      *
      * @since 0.3.1
      */
-    function add_screenings_post_type() {
+    public function add_screenings_post_type() {
 
         if ( ! class_exists( 'AdminPageFramework' ) )
             include_once( dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/library/admin-page-framework.min.php' );

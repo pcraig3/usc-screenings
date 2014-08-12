@@ -79,10 +79,11 @@ class USC_Screenings_Admin {
 		//add_action( '@TODO', array( $this, 'action_method_name' ) );
 		//add_filter( '@TODO', array( $this, 'filter_method_name' ) );
 
+        //add_action( 'init', array( $this, 'add_screenings_post_type_admin' ), 25 );
         $this->add_screenings_post_type_admin();
 	}
 
-    function add_screenings_post_type_admin() {
+    public function add_screenings_post_type_admin() {
 
         // Create meta boxes with form fields that appear in post definition pages (where you create a post) of the given post type.
         //include_once(  dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/example/APF_MetaBox_BuiltinFieldTypes.php' );

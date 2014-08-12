@@ -43,38 +43,38 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
          */
         $this->addSettingFields(
             array(
-                'field_id'		=> 'job_description',
-                'type'			=> 'textarea',
-                'title'			=> __( 'Job Description*', 'usc-screenings' ),
-                'description'	=> __( '(required)', 'usc-screenings' ),
-                'help'			=> __( 'Write a short description for the job here.', 'usc-screenings' ),
-                'attributes'	=>	array(
-                    'cols'	=>	40,
-                )
+                'field_id'		=> 'start_date',
+                'title'			=> __( 'Start Date', 'usc-screenings' ),
+                'description'	=> __( 'The first day of the runtime.', 'usc-screenings' ),
+                'help'			=> __( 'The first day of the runtime.', 'usc-screenings' ),
+                'type'			=> 'date',
+                'date_format'	=>	'yy-mm-dd',
+                'size'          =>  '40',
+                //'attributes'	=>	array()
             ),
             array(	// date picker
-                'field_id'	    =>	'apply_by_date',
-                'title'	        =>	__( 'Apply-by Date*', 'usc-screenings'),
-                'description'	=>	__( 'Candidates must have their applications in by this date. (required)', 'usc-screenings' ),
-                'help'	        =>	__( 'Candidates must have their applications in by this date.', 'usc-screenings' ),
-                'type'          =>  'date_time',
+                'field_id'	    =>	'end_date',
+                'title'			=>  __( 'End Date', 'usc-screenings' ),
+                'description'	=> __( 'The final day of the runtime.', 'usc-screenings' ),
+                'help'			=> __( 'The final day of the runtime.', 'usc-screenings' ),
+                'type'			=> 'date',
                 'date_format'	=>	'yy-mm-dd',
-                'time_format'	=>  'HH:mm',
                 'size'          =>  '40',
             ),
-            array (
-                'field_id'		=> 'renumeration',
-                'type'			=> 'radio',
-                'title'			=> __( 'Renumeration Expected', 'usc-screenings' ),
-                //'description'	=> __( 'If this is a paid position, the following fields', 'usc-screenings' ),
-                'help'	        => __( 'Is this a paid position, a volunteer position, or an internship?', 'usc-screenings' ),
-                'label' => array(
-                    'volunteer' => __( 'Volunteer', 'usc-screenings' ),
-                    'paid' => __( 'Paid', 'usc-screenings' ),
-                    'internship' => __( 'Internship', 'usc-screenings' ),
+            array(	// Repeatable time picker fields
+                'field_id'	=>	'showtimes_repeatable',
+                'type'	=>	'time',
+                'title'	=>	__( 'Showtime(s)', 'usc-screenings' ),
+                'repeatable'	=> true,
+                'options'	=>	array(
+                    'hourGrid'		=>	12,
+                    'minuteGrid'	=>	30,
+                    'timeFormat'	=>	'hh:mm tt',
                 ),
-                'default' => 'volunteer',
+                'description'	=>	__( 'The time(s) of day for the screening.', 'usc-screenings' ),
+                'help'	        =>	__( 'The time(s) of day for the screening.', 'usc-screenings' ),
             ),
+            /*  //rating?
             array (
                 'field_id'		=> 'position',
                 'type'			=> 'radio',
@@ -93,43 +93,29 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                     'class'	=>	'hidden',
                 ),
             ),
+            */
             array(
-                'field_id'		=> 'application_link',
+                'field_id'		=> 'genre',
                 'type'			=> 'text',
-                'title'			=> __( 'Application Link', 'usc-screenings' ),
-                'description'	=> __( 'Link to an offsite application form.', 'usc-screenings' ),
-                'help'			=> __( 'Link to an offsite application form.', 'usc-screenings' ),
+                'title'			=> __( 'Genre', 'usc-screenings' ),
+                'description'	=> __( '(optional)', 'usc-screenings' ),
+                'help'			=> __( 'What genre is this screening?', 'usc-screenings' ),
             ),
             array( // Media File (which we are constraining to PDFs.)
-                'field_id'		=>	'job_posting_file',
-                'title'			=>	__( 'Job Posting File', 'usc-screenings' ),
-                'type'			=>	'media',
-                'description'	=>	__( 'Upload the job posting file.', 'usc-screenings' ),
-                'help'	        =>	__( 'Upload the job posting file.', 'usc-screenings' ),
+                'field_id'		=>	'trailer_link',
+                'title'			=>	__( 'Link to Trailer', 'usc-screenings' ),
+                'type'			=>	'text',
+                'description'	=>	__( 'Link to the trailer. (optional)', 'usc-screenings' ),
+                'description'	=>	__( 'Link to the trailer. (optional)', 'usc-screenings' ),
                 'allow_external_source'	=>	true,
             ),
             array(
-                'field_id'		=>	'job_description_file',
-                'title'			=>	__( 'Job Description File*', 'usc-screenings' ),
+                'field_id'		=>	'official_site_link',
+                'title'			=>	__( 'Link to Official Site', 'usc-screenings' ),
                 'type'			=>	'media',
-                'description'	=>	__( 'Only PDF and Word documents are accepted. (required)', 'usc-screenings' ),
-                'help'	        =>	__( 'Upload the job description file (required).', 'usc-screenings' ),
-                'allow_external_source'	=>	false,
-                'attributes'	=>	array(
-                    'data-nonce'	=>	wp_create_nonce('job_description_file_nonce'),
-                    //'style'	=>	'background-color: #C8AEFF;',
-                ),
-            ),
-            array(
-                'field_id'		=> 'contact_information',
-                'type'			=> 'textarea',
-                'title'			=> __( 'Contact Information Description', 'usc-screenings' ),
-                'description'	=> __( 'Who to contact for more information.  Can be just an email, or a name and phone number, etc. ', 'usc-screenings' ),
-                'help'	        => __( 'Who to contact for more information.  Can be just an email, or a name and phone number, etc. ', 'usc-screenings' ),
-                'default'		=> __( 'usc.jobs@westernusc.ca', 'usc-screenings' ),
-                'attributes'	=>	array(
-                    'cols'	=>	40,
-                ),
+                'description'	=>	__( 'Link to the official site. (optional)', 'usc-screenings' ),
+                'description'	=>	__( 'Link to the official site. (optional)', 'usc-screenings' ),
+                'allow_external_source'	=>	true,
             )
         /* ,
         array (
