@@ -5,7 +5,7 @@
  * This includes the header, options, and other information that should provide
  * The User Interface to the end user.
  *
- * @package   USC_Jobs
+ * @package   USC_Screenings
  * @author    Paul Craig <pcraig3@uwo.ca>
  * @license   GPL-2.0+
  * @copyright 2014

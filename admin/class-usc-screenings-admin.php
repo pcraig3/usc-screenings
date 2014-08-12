@@ -1,8 +1,8 @@
 <?php
 /**
- * USC Jobs
+ * USC Screenings
  *
- * @package   USC_Jobs_Admin
+ * @package   USC_Screenings_Admin
  * @author    Paul Craig <pcraig3@uwo.ca>
  * @license   GPL-2.0+
  * @copyright 2014
@@ -13,12 +13,12 @@
  * administrative side of the WordPress site.
  *
  * If you're interested in introducing public-facing
- * functionality, then refer to `class-usc-jobs.php`
+ * functionality, then refer to `class-usc-screenings.php`
  *
- * @package USC_Jobs_Admin
+ * @package USC_Screenings_Admin
  * @author    Paul Craig <pcraig3@uwo.ca>
  */
-class USC_Jobs_Admin {
+class USC_Screenings_Admin {
 
 	/**
 	 * Instance of this class.
@@ -42,7 +42,7 @@ class USC_Jobs_Admin {
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
 	 *
-	 * @since     0.1.0
+	 * @since     0.3.1
 	 */
 	private function __construct() {
 
@@ -56,7 +56,7 @@ class USC_Jobs_Admin {
 		/*
 		 * Call $plugin_slug from public plugin class.
 		 */
-		$plugin = USC_Jobs::get_instance();
+		$plugin = USC_Screenings::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
 		// Load admin style sheet and JavaScript.
@@ -79,27 +79,26 @@ class USC_Jobs_Admin {
 		//add_action( '@TODO', array( $this, 'action_method_name' ) );
 		//add_filter( '@TODO', array( $this, 'filter_method_name' ) );
 
-        $this->add_jobs_post_type_admin();
-
+        $this->add_screenings_post_type_admin();
 	}
 
-    function add_jobs_post_type_admin() {
+    function add_screenings_post_type_admin() {
 
         // Create meta boxes with form fields that appear in post definition pages (where you create a post) of the given post type.
         //include_once(  dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/example/APF_MetaBox_BuiltinFieldTypes.php' );
-        include_once('USC_Job_MetaBox.php');
-        new USC_Job_MetaBox(
-            'sample_custom_meta_box',	// meta box ID
-            __( 'Job Fields', 'usc-jobs' ),	// title
-            array( 'usc_jobs' ),	// post type slugs: post, page, etc.
+        include_once('USC_Screening_MetaBox.php');
+        new USC_Screening_MetaBox(
+            'usc_screenings_metabox',	// meta box ID
+            __( 'Screening Details', 'usc-screenings' ),	// title
+            array( 'usc_screenings' ),	// post type slugs: post, page, etc.
             'normal',	// context (what kind of metabox this is)
             'default'	// priority
         );
 
         // Add fields in the taxonomy page
         //include_once(  dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/example/APF_TaxonomyField.php' );
-        include_once('USC_Department_TaxonomyField.php');
-        new USC_Department_TaxonomyField( 'departments' );	 	// taxonomy slug
+        include_once('USCScreening_Status_TaxonomyField.php');
+        new USCScreenings_Status_TaxonomyField( 'statuses' );	 	// taxonomy slug
 
     }
 
@@ -130,7 +129,7 @@ class USC_Jobs_Admin {
 	/**
 	 * Register and enqueue admin-specific style sheet.
      *
-	 * @since     0.1.0
+	 * @since     0.3.1
 	 *
 	 * @return    null    Return early if no settings page is registered.
 	 */
@@ -142,7 +141,7 @@ class USC_Jobs_Admin {
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
-			wp_enqueue_style( $this->plugin_slug .'-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), USC_Jobs::VERSION );
+			wp_enqueue_style( $this->plugin_slug .'-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), USC_Screenings::VERSION );
 		}
 
 	}
@@ -151,7 +150,7 @@ class USC_Jobs_Admin {
 	 * Register and enqueue admin-specific JavaScript.
 	 *
      *
-	 * @since     0.1.0
+	 * @since     0.3.1
 	 *
 	 * @return    null    Return early if no settings page is registered.
 	 */
@@ -163,7 +162,7 @@ class USC_Jobs_Admin {
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
-			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), USC_Jobs::VERSION );
+			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), USC_Screenings::VERSION );
 		}
 
 	}

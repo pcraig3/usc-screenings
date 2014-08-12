@@ -1,8 +1,8 @@
 <?php
 /**
- * USC Jobs.
+ * USC Screenings.
  *
- * @package   USC_Jobs
+ * @package   USC_Screenings
  * @author    Paul Craig <pcraig3@uwo.ca>
  * @license   GPL-2.0+
  * @copyright 2014
@@ -13,21 +13,21 @@
  * public-facing side of the WordPress site.
  *
  * If you're interested in introducing administrative or dashboard
- * functionality, then refer to `class-usc-jobs-admin.php`
+ * functionality, then refer to `class-usc-screenings-admin.php`
  *
- * @package USC_Jobs
+ * @package USC_Screenings
  * @author    Paul Craig <pcraig3@uwo.ca>
  */
-class USC_Jobs {
+class USC_Screenings {
 
 	/**
 	 * Plugin version, used for cache-busting of style and script file references.
 	 *
-	 * @since   0.3.0
+	 * @since   0.3.1
 	 *
 	 * @var     string
 	 */
-	const VERSION = '0.3.0';
+	const VERSION = '0.3.1';
 
 	/**
 	 *
@@ -37,11 +37,11 @@ class USC_Jobs {
 	 * of text. Its value should match the Text Domain file header in the main
 	 * plugin file.
 	 *
-	 * @since    0.1.0
+	 * @since    0.3.1
 	 *
 	 * @var      string
 	 */
-	protected $plugin_slug = 'usc-jobs';
+	protected $plugin_slug = 'usc-screenings';
 
 	/**
 	 * Instance of this class.
@@ -56,7 +56,7 @@ class USC_Jobs {
 	 * Initialize the plugin by setting localization and loading public scripts
 	 * and styles.
 	 *
-	 * @since     0.2.0
+	 * @since     0.3.1
 	 */
 	private function __construct() {
 
@@ -76,41 +76,22 @@ class USC_Jobs {
 		//add_action( '@TODO', array( $this, 'action_method_name' ) );
 		//add_filter( '@TODO', array( $this, 'filter_method_name' ) );
 
-        $this->add_jobs_post_type();
+        $this->add_screenings_post_type();
 	}
 
     /**
-     * Creates a new Job Post Type.  You should apply.
+     * Creates a new Screening Post Type.  You should come watch.
      *
-     * @since 0.2.0
+     * @since 0.3.1
      */
-    function add_jobs_post_type() {
+    function add_screenings_post_type() {
 
         if ( ! class_exists( 'AdminPageFramework' ) )
             include_once( dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/library/admin-page-framework.min.php' );
 
-        include_once('USC_Job_PostType.php');
-        new USCJob_PostType( 'usc_jobs' );
+        include_once('USC_Screening_PostType.php');
+        new USCScreening_PostType( 'usc_screenings' );
 
-        /* @TODO: Still thinking.  We could put the admin code in the admin part, but it all relates.  hmm. *//*
-        if ( is_admin() ) {
-
-            // Create meta boxes with form fields that appear in post definition pages (where you create a post) of the given post type.
-            //include_once(  dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/example/APF_MetaBox_BuiltinFieldTypes.php' );
-            include_once('USC_Job_MetaBox.php');
-            new USC_Job_MetaBox(
-                'sample_custom_meta_box',	// meta box ID
-                __( 'Job Fields', 'usc-jobs' ),	// title
-                array( 'usc_jobs' ),	// post type slugs: post, page, etc.
-                'normal',	// context (what kind of metabox this is)
-                'default'	// priority
-            );
-
-            // Add fields in the taxonomy page
-            //include_once(  dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/example/APF_TaxonomyField.php' );
-            include_once('USC_Department_TaxonomyField.php');
-            new USC_Department_TaxonomyField( 'departments' );	 	// taxonomy slug
-        }*/
     }
 
 	/**

@@ -1,5 +1,5 @@
 <?php
-class USC_Department_TaxonomyField extends AdminPageFramework_TaxonomyField {
+class USCScreenings_Status_TaxonomyField extends AdminPageFramework_TaxonomyField {
 
     /*
      * ( optional ) Use the setUp() method to define settings of this meta box.
@@ -23,7 +23,7 @@ class USC_Department_TaxonomyField extends AdminPageFramework_TaxonomyField {
 
     }
 
-    public function columns_USC_Department_TaxonomyField( $aColumn ) {	// column_{instantiated class name}
+    public function columns_USCScreenings_Status_TaxonomyField( $aColumn ) {	// column_{instantiated class name}
 
         unset( $aColumn['description'] );
         return array(

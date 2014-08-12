@@ -1,14 +1,14 @@
 <?php
-class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
+class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
 
     /**
      * Framework method that registers all of the DateTime fields we need
      *
      * @remark  this is a pre-defined framework method
      *
-     * @since    0.3.0
+     * @since    0.3.1
      */
-    public function start_USC_Job_MetaBox() { // start_{extended class name} - this method gets automatically triggered at the end of the class constructor.
+    public function start_USC_Screening_MetaBox() { // start_{extended class name} - this method gets automatically triggered at the end of the class constructor.
 
         /*
          * Register custom field types.
@@ -17,7 +17,6 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
         /* 1. Include the file that defines the custom field type. */
         $aFiles = array(
 
-            dirname( __FILE__ ) . '/custom-fields/event-modify-custom-field-type/EventModifyCustomFieldType.php',
             dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/admin-page-framework/third-party/date-time-custom-field-types/DateCustomFieldType.php',
             dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/admin-page-framework/third-party/date-time-custom-field-types/TimeCustomFieldType.php',
             dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/admin-page-framework/third-party/date-time-custom-field-types/DateTimeCustomFieldType.php',
@@ -28,7 +27,6 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
 
         /* 2. Instantiate the classes  */
         $sClassName = get_class( $this );
-        new EventModifyCustomFieldType( $sClassName );
         new DateCustomFieldType( $sClassName );
         new TimeCustomFieldType( $sClassName );
         new DateTimeCustomFieldType( $sClassName );
@@ -41,32 +39,24 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
     public function setUp() {
 
         /*
-         * ( optional ) Adds a contextual help pane at the top right of the page that the meta box resides.
-         */
-        $this->addHelpText(
-            __( 'This text will DANCE in the contextual help pane.', 'admin-page-framework-demo' ),
-            __( 'This description LAZES in the sidebar of the help pane.', 'admin-page-framework-demo' )
-        );
-
-        /*
          * ( optional ) Adds setting fields into the meta box.
          */
         $this->addSettingFields(
             array(
                 'field_id'		=> 'job_description',
                 'type'			=> 'textarea',
-                'title'			=> __( 'Job Description*', 'usc-jobs' ),
-                'description'	=> __( '(required)', 'usc-jobs' ),
-                'help'			=> __( 'Write a short description for the job here.', 'usc-jobs' ),
+                'title'			=> __( 'Job Description*', 'usc-screenings' ),
+                'description'	=> __( '(required)', 'usc-screenings' ),
+                'help'			=> __( 'Write a short description for the job here.', 'usc-screenings' ),
                 'attributes'	=>	array(
                     'cols'	=>	40,
                 )
             ),
             array(	// date picker
                 'field_id'	    =>	'apply_by_date',
-                'title'	        =>	__( 'Apply-by Date*', 'usc-jobs'),
-                'description'	=>	__( 'Candidates must have their applications in by this date. (required)', 'usc-jobs' ),
-                'help'	        =>	__( 'Candidates must have their applications in by this date.', 'usc-jobs' ),
+                'title'	        =>	__( 'Apply-by Date*', 'usc-screenings'),
+                'description'	=>	__( 'Candidates must have their applications in by this date. (required)', 'usc-screenings' ),
+                'help'	        =>	__( 'Candidates must have their applications in by this date.', 'usc-screenings' ),
                 'type'          =>  'date_time',
                 'date_format'	=>	'yy-mm-dd',
                 'time_format'	=>  'HH:mm',
@@ -75,28 +65,28 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
             array (
                 'field_id'		=> 'renumeration',
                 'type'			=> 'radio',
-                'title'			=> __( 'Renumeration Expected', 'usc-jobs' ),
-                //'description'	=> __( 'If this is a paid position, the following fields', 'usc-jobs' ),
-                'help'	        => __( 'Is this a paid position, a volunteer position, or an internship?', 'usc-jobs' ),
+                'title'			=> __( 'Renumeration Expected', 'usc-screenings' ),
+                //'description'	=> __( 'If this is a paid position, the following fields', 'usc-screenings' ),
+                'help'	        => __( 'Is this a paid position, a volunteer position, or an internship?', 'usc-screenings' ),
                 'label' => array(
-                    'volunteer' => __( 'Volunteer', 'usc-jobs' ),
-                    'paid' => __( 'Paid', 'usc-jobs' ),
-                    'internship' => __( 'Internship', 'usc-jobs' ),
+                    'volunteer' => __( 'Volunteer', 'usc-screenings' ),
+                    'paid' => __( 'Paid', 'usc-screenings' ),
+                    'internship' => __( 'Internship', 'usc-screenings' ),
                 ),
                 'default' => 'volunteer',
             ),
             array (
                 'field_id'		=> 'position',
                 'type'			=> 'radio',
-                'title'			=> __( 'Position*', 'usc-jobs' ),
-                'description'	=> __( '(required if position is paid)', 'usc-jobs' ),
-                'help'	        => __( 'What kind of position this job is for.', 'usc-jobs' ),
+                'title'			=> __( 'Position*', 'usc-screenings' ),
+                'description'	=> __( '(required if position is paid)', 'usc-screenings' ),
+                'help'	        => __( 'What kind of position this job is for.', 'usc-screenings' ),
                 'label' => array(
-                    'ft_permanent'  => __( 'Full-Time Permanent', 'usc-jobs' ),
-                    'ft_contract'   => __( 'Full-Time Contract', 'usc-jobs' ),
-                    'pt_permanent'  => __( 'Part-Time Permanent', 'usc-jobs' ),
-                    'pt_contract'   => __( 'Part-Time Contract', 'usc-jobs' ),
-                    'honourarium'   => __( 'Honourarium', 'usc-jobs' ),
+                    'ft_permanent'  => __( 'Full-Time Permanent', 'usc-screenings' ),
+                    'ft_contract'   => __( 'Full-Time Contract', 'usc-screenings' ),
+                    'pt_permanent'  => __( 'Part-Time Permanent', 'usc-screenings' ),
+                    'pt_contract'   => __( 'Part-Time Contract', 'usc-screenings' ),
+                    'honourarium'   => __( 'Honourarium', 'usc-screenings' ),
                 ),
                 'default' => 'volunteer',
                 'attributes'	=>	array(
@@ -106,24 +96,24 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
             array(
                 'field_id'		=> 'application_link',
                 'type'			=> 'text',
-                'title'			=> __( 'Application Link', 'usc-jobs' ),
-                'description'	=> __( 'Link to an offsite application form.', 'usc-jobs' ),
-                'help'			=> __( 'Link to an offsite application form.', 'usc-jobs' ),
+                'title'			=> __( 'Application Link', 'usc-screenings' ),
+                'description'	=> __( 'Link to an offsite application form.', 'usc-screenings' ),
+                'help'			=> __( 'Link to an offsite application form.', 'usc-screenings' ),
             ),
             array( // Media File (which we are constraining to PDFs.)
                 'field_id'		=>	'job_posting_file',
-                'title'			=>	__( 'Job Posting File', 'usc-jobs' ),
+                'title'			=>	__( 'Job Posting File', 'usc-screenings' ),
                 'type'			=>	'media',
-                'description'	=>	__( 'Upload the job posting file.', 'usc-jobs' ),
-                'help'	        =>	__( 'Upload the job posting file.', 'usc-jobs' ),
+                'description'	=>	__( 'Upload the job posting file.', 'usc-screenings' ),
+                'help'	        =>	__( 'Upload the job posting file.', 'usc-screenings' ),
                 'allow_external_source'	=>	true,
             ),
             array(
                 'field_id'		=>	'job_description_file',
-                'title'			=>	__( 'Job Description File*', 'usc-jobs' ),
+                'title'			=>	__( 'Job Description File*', 'usc-screenings' ),
                 'type'			=>	'media',
-                'description'	=>	__( 'Only PDF and Word documents are accepted. (required)', 'usc-jobs' ),
-                'help'	        =>	__( 'Upload the job description file (required).', 'usc-jobs' ),
+                'description'	=>	__( 'Only PDF and Word documents are accepted. (required)', 'usc-screenings' ),
+                'help'	        =>	__( 'Upload the job description file (required).', 'usc-screenings' ),
                 'allow_external_source'	=>	false,
                 'attributes'	=>	array(
                     'data-nonce'	=>	wp_create_nonce('job_description_file_nonce'),
@@ -133,10 +123,10 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
             array(
                 'field_id'		=> 'contact_information',
                 'type'			=> 'textarea',
-                'title'			=> __( 'Contact Information Description', 'usc-jobs' ),
-                'description'	=> __( 'Who to contact for more information.  Can be just an email, or a name and phone number, etc. ', 'usc-jobs' ),
-                'help'	        => __( 'Who to contact for more information.  Can be just an email, or a name and phone number, etc. ', 'usc-jobs' ),
-                'default'		=> __( 'usc.jobs@westernusc.ca', 'usc-jobs' ),
+                'title'			=> __( 'Contact Information Description', 'usc-screenings' ),
+                'description'	=> __( 'Who to contact for more information.  Can be just an email, or a name and phone number, etc. ', 'usc-screenings' ),
+                'help'	        => __( 'Who to contact for more information.  Can be just an email, or a name and phone number, etc. ', 'usc-screenings' ),
+                'default'		=> __( 'usc.jobs@westernusc.ca', 'usc-screenings' ),
                 'attributes'	=>	array(
                     'cols'	=>	40,
                 ),
@@ -145,14 +135,13 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
         array (
             'field_id'		=> 'taxonomy_checklist',
             'type'			=> 'taxonomy',
-            'title'			=> __( 'Departments', 'usc-jobs' ),
+            'title'			=> __( 'Departments', 'usc-screenings' ),
             'taxonomy_slugs'	=>	array( 'departments' )
         )
         */
         );
 
-        http://testwestern.com//js/debug-bar.js?ver=20111209'
-
+        /*
         $this->enqueueScript(
             plugins_url('assets/js/reveal_job_pane.js', __FILE__ ),   // source url or path
             array( 'usc_jobs' ),
@@ -161,11 +150,11 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
                 'dependencies ' => array('jquery'),
                 'in_footer' => true
             )
-        );
+        );*/
     }
 
     /** Draft if errors found in validation: http://stackoverflow.com/questions/5007748/modifying-wordpress-post-status-on-publish */
-    public function validation_USC_Job_MetaBox( $aInput, $aOldInput ) {	// validation_{instantiated class name}
+    public function validation_USC_Screening_MetaBox( $aInput, $aOldInput ) {	// validation_{instantiated class name}
 
         $_fIsValid = true;
         $_aErrors = array();
@@ -181,11 +170,11 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
         );
 
         // Validate the submitted data.
-        foreach( $non_empty_fields as $key => $value ) {
+        /*foreach( $non_empty_fields as $key => $value ) {
 
             if ( empty( $aInput[$key] ) ) {
 
-                $_aErrors[$key] = __( $value, 'usc-jobs' );
+                $_aErrors[$key] = __( $value, 'usc-screenings' );
                 $_fIsValid = false;
             }
         }
@@ -203,13 +192,13 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
 
             if ( ! in_array($job_description_file_extension, $allowed_extensions) ) {
 
-                $_aErrors['job_description_file'] = __( 'Not an acceptable file type.  Please upload a PDF or a Word Document.', 'usc-jobs' );
+                $_aErrors['job_description_file'] = __( 'Not an acceptable file type.  Please upload a PDF or a Word Document.', 'usc-screenings' );
                 $_fIsValid = false;
             }
             ///http://stackoverflow.com/questions/7952977/php-check-if-url-and-a-file-exists
             elseif ( ! $this->web_item_exists( $aInput['job_description_file'] ) ){
 
-                $_aErrors['job_description_file'] = __( 'Sorry, but your URL doesn\'t appear to exist. Try uploading and selecting your file again.', 'usc-jobs' );
+                $_aErrors['job_description_file'] = __( 'Sorry, but your URL doesn\'t appear to exist. Try uploading and selecting your file again.', 'usc-screenings' );
                 $_fIsValid = false;
 
             }
@@ -217,15 +206,16 @@ class USC_Job_MetaBox extends AdminPageFramework_MetaBox {
 
         if( ! filter_var( $aInput['application_link'], FILTER_VALIDATE_URL )  ) {
 
-            $_aErrors['application_link'] = __( 'Sorry, can you try a properly formatted URL?', 'usc-jobs' );
+            $_aErrors['application_link'] = __( 'Sorry, can you try a properly formatted URL?', 'usc-screenings' );
             $_fIsValid = false;
 
         }
+        */
 
         if ( ! $_fIsValid ) {
 
             $this->setFieldErrors( $_aErrors );
-            $this->setSettingNotice( __( '<pre>' . print_r($aInput, true) . '</pre><p>' . 'nothing' . '</p>', 'usc-jobs' ) );
+            $this->setSettingNotice( __( '<pre>' . print_r($aInput, true) . '</pre><p>' . 'nothing' . '</p>', 'usc-screenings' ) );
 
             //hacky, but fun!
             add_filter( 'wp_insert_post_data', function( $data ) { //use ( $status ) {

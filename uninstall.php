@@ -2,7 +2,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package   USC_Jobs
+ * @package   USC_Screenings
  * @author    Paul Craig <pcraig3@uwo.ca>
  * @license   GPL-2.0+
  * @copyright 2014

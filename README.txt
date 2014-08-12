@@ -1,23 +1,25 @@
-=== USC Jobs ===
+=== USC Screenings ===
 Contributors: pcraig3
 Donate link: http://example.com/
 Tags: comments, spam
 Requires at least: 3.5.1
 Tested up to: 3.6
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Plugin creates a new 'Jobs' Custom Post Type -- expects the Admin Page Framework to be included.
+Plugin creates a new 'Screenings' Custom Post Type -- expects the Admin Page Framework to be included.
 
 == Description ==
 
-Plugin creates a new 'Jobs' Custom Post Type -- expects the Admin Page Framework to be included.
+Plugin creates a new 'Screenings' Custom Post Type -- expects the Admin Page Framework to be included.
+Screenings, if it's ambiguous, are for Western Film.
 
 List of features we want:
 
-*   Create a Job.
-*   List Jobs on the site.
+*   Create a Screening in the backend
+*   Screening populates a list of screenings in the front-end
+*   Screening also has its own page
 
 == Installation ==
 
@@ -25,23 +27,18 @@ This section describes how to install the plugin and get it working.
 
 == Frequently Asked Questions ==
 
-= Give me a job. =
+= Show me a movie. =
 
-No.  Maybe once we're at 0.9.0
+No.  Maybe once we're at August 22nd.
 
 
 == Changelog ==
 
+= 0.3.1 =
+* Changed (nearly) all instances of 'Job' and 'Department'.  Here goes.
+
 = 0.3.0 =
-* USC Jobs are some resemblance of what a job post might look like.
-
-= 0.2.0 =
-* USC Jobs shows up for public / admin users.
-
-
-= 0.1.0 =
-* Trying to get a Custom Post built with the Advance Page Framework to show up.
-
+* USC Screenings being hacked together based heavily on our prior experience with USC Jobs.
 
 == Updates ==
 
