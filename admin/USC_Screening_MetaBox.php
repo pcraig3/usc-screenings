@@ -14,12 +14,16 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
          * Register custom field types.
          */
 
+
+        //exactly one up from this directory is the home directory of the plugin
+        $usc_screenings_dir = trailingslashit( dirname( __DIR__ ) );
+
         /* 1. Include the file that defines the custom field type. */
         $aFiles = array(
 
-            dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/admin-page-framework/third-party/date-time-custom-field-types/DateCustomFieldType.php',
-            dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/admin-page-framework/third-party/date-time-custom-field-types/TimeCustomFieldType.php',
-            dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/admin-page-framework/third-party/date-time-custom-field-types/DateTimeCustomFieldType.php',
+            dirname( $usc_screenings_dir) . '/admin-page-framework/third-party/date-time-custom-field-types/DateCustomFieldType.php',
+            dirname( $usc_screenings_dir) . '/admin-page-framework/third-party/date-time-custom-field-types/TimeCustomFieldType.php',
+            dirname( $usc_screenings_dir) . '/admin-page-framework/third-party/date-time-custom-field-types/DateTimeCustomFieldType.php',
         );
 
         foreach( $aFiles as $sFilePath )
@@ -74,6 +78,13 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'description'	=>	__( 'The time(s) of day for the screening.', 'usc-screenings' ),
                 'help'	        =>	__( 'The time(s) of day for the screening.', 'usc-screenings' ),
             ),
+            array(
+                'field_id'		=> 'duration',
+                'type'			=> 'text',
+                'title'			=> __( 'Duration', 'usc-screenings' ),
+                'description'	=> __( 'How long is this screening?', 'usc-screenings' ),
+                'help'	=> __( 'How long is this screening?', 'usc-screenings' ),
+            ),
             /*  //rating?
             array (
                 'field_id'		=> 'position',
@@ -112,7 +123,7 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
             array(
                 'field_id'		=>	'official_site_link',
                 'title'			=>	__( 'Link to Official Site', 'usc-screenings' ),
-                'type'			=>	'media',
+                'type'			=>	'text',
                 'description'	=>	__( 'Link to the official site. (optional)', 'usc-screenings' ),
                 'description'	=>	__( 'Link to the official site. (optional)', 'usc-screenings' ),
                 'allow_external_source'	=>	true,

@@ -78,10 +78,64 @@ class USC_Screenings {
 
         $this->add_screenings_post_type();
 
-        add_action( 'init', array($this, 'not_much') );
-	}
+        add_action( 'init', array( $this, 'explictly_add_post_thumbnails' ) );
+        add_action( 'init',  array( $this, 'register_shortcodes' ) );
 
-    public function not_much() {
+    }
+
+    public function register_shortcodes(){
+
+        add_shortcode('usc_screenings', array( $this, 'list_usc_screenings' ) );
+    }
+
+    public function list_usc_screenings ( $atts ) {
+        //I still think this is a pretty good way to do this
+        //https://github.com/pcraig3/test-events/blob/master/public/class-test-events.php
+
+
+        $limit = 2;
+
+        /*
+        //http://wordpress.stackexchange.com/questions/50761/when-to-use-wp-query-query-posts-and-pre-get-posts
+        http://codex.wordpress.org/Class_Reference/WP_Query#Taxonomy_Parameters
+        read: http://www.smashingmagazine.com/2013/01/14/using-wp_query-wordpress/
+$my_secondary_loop = new WP_Query(...);
+if( $my_secondary_loop->have_posts() ):
+    while( $my_secondary_loop->have_posts() ): $my_secondary_loop->the_post();
+       //The secondary loop
+    endwhile;
+endif;
+wp_reset_postdata();
+        */
+
+
+        //initialize your variables
+        /*
+        $limit = false;
+
+        extract(
+            shortcode_atts(
+                array(
+                    'limit' => 2,
+                ), $atts ),
+            EXTR_OVERWRITE);
+
+
+        $html_string = '<ul>';
+        query_posts( array('orderby' => 'date', 'order' => 'DESC' , 'showposts' => $limit ));
+        if (have_posts()) :
+            while (have_posts()) : the_post();
+                $html_string .= '<li><a href="'.get_permalink().'">'.get_the_title().'</a></li>';
+            endwhile;
+        endif;
+        $html_string .= '</ul>';
+
+        //wp_reset_query();
+        return $html_string;
+        */
+    }
+
+    public function explictly_add_post_thumbnails() {
         add_theme_support( 'post-thumbnails', array( 'usc_screenings' ) );
 
         //wp_die( var_dump( get_post_types( array(), 'names' ) ) );
