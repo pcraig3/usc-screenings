@@ -54,7 +54,7 @@ class USCScreening_PostType extends AdminPageFramework_PostType {
         // the setUp() method is too late to add taxonomies. So we use start_{class name} action hook.
         //if we have to http://wordpress.stackexchange.com/questions/140351/how-to-completely-disable-a-taxonomy-archive-on-the-frontend
         $this->addTaxonomy(
-            'status', // taxonomy slug
+            'screenings_status', // taxonomy slug
             array(			// argument - for the argument array keys, refer to : http://codex.wordpress.org/Function_Reference/register_taxonomy#Arguments
                 'labels' => array(
                     'name' => 'Statuses',

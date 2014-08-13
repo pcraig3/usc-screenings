@@ -42,7 +42,7 @@ class USC_Screenings_Admin {
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
 	 *
-	 * @since     0.3.1
+	 * @since     0.7.0
 	 */
 	private function __construct() {
 
@@ -70,15 +70,6 @@ class USC_Screenings_Admin {
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
-		/*
-		 * Define custom functionality.
-		 *
-		 * Read more about actions and filters:
-		 * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-		 */
-		//add_action( '@TODO', array( $this, 'action_method_name' ) );
-		//add_filter( '@TODO', array( $this, 'filter_method_name' ) );
-
         //add_action( 'init', array( $this, 'add_screenings_post_type_admin' ), 25 );
         $this->add_screenings_post_type_admin();
 	}
@@ -99,7 +90,7 @@ class USC_Screenings_Admin {
         // Add fields in the taxonomy page
         //include_once(  dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/example/APF_TaxonomyField.php' );
         include_once('USCScreening_Status_TaxonomyField.php');
-        new USCScreenings_Status_TaxonomyField( 'statuses' );	 	// taxonomy slug
+        new USCScreenings_Status_TaxonomyField( 'screenings_status' );	 	// taxonomy slug
 
     }
 

@@ -6,7 +6,7 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
      *
      * @remark  this is a pre-defined framework method
      *
-     * @since    0.3.1
+     * @since    0.7.0
      */
     public function start_USC_Screening_MetaBox() { // start_{extended class name} - this method gets automatically triggered at the end of the class constructor.
 

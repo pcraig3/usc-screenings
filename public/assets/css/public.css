@@ -1,1 +1,67 @@
 /* This stylesheet is used to style the public-facing components of the plugin. */
+/* http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/ */
+/* ====== media ====== */
+.media, .bd {overflow:hidden; _overflow:visible; zoom:1;}
+.media .img {float:left; margin-right: 10px;}
+.media .img img{display:block;}
+.media .imgExt{float:right; margin-left: 10px;}
+
+.media .cf > * {
+
+    vertical-align: bottom;
+    display:        inline-block;
+    /* ie6/7 */
+    *display:       inline;
+    zoom:           1;
+}
+
+.media .bd__foot__left,
+.media .bd__foot__right {
+
+    position:   absolute;
+    bottom:     0;
+    width:      45%;
+}
+
+.media .bd__foot__right {
+
+    right: 0;
+    text-align: right;
+}
+
+/* ====== making everything look okay ===== */
+.media {
+    position:       relative;
+    padding-top:    20px;
+    margin:         20px 10px;
+    border-top:     1px solid #CCC;
+}
+
+.media:first-of-type {
+    border-top: none;
+}
+
+.bd p {
+    padding:        0;
+    line-height:    1.4em;
+}
+
+.bd__head .movie_title {
+    font-size:      1.6em;
+    text-transform: uppercase;
+    color: #666;
+    padding-bottom: 10px;
+}
+
+.bd__foot__right * {
+    width:              45%;
+    margin-left:        5%;
+    color:              white;
+    background-color:   #666;
+    padding:            2px;
+    box-sizing:         border-box;
+    border:             #CCC solid 1px;
+    text-align:         center;
+}
+
+
