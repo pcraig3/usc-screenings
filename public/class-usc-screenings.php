@@ -52,6 +52,9 @@ class USC_Screenings {
      */
     protected static $instance = null;
 
+
+    protected $usc_screenings_dir = null;
+
     /**
      * Initialize the plugin by setting localization and loading public scripts
      * and styles.
@@ -59,6 +62,10 @@ class USC_Screenings {
      * @since    0.7.0
      */
     private function __construct() {
+
+        //exactly one up from this directory is the home directory of the plugin
+        $this->usc_screenings_dir = trailingslashit( dirname( __DIR__ ) );
+
 
         // Load plugin text domain
         add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
@@ -81,6 +88,7 @@ class USC_Screenings {
         add_action( 'init', array( $this, 'explictly_add_post_thumbnails' ) );
         add_action( 'init',  array( $this, 'register_shortcodes' ) );
 
+        add_filter( 'template_include', array( $this, 'usc_screenings_set_template' ) ) ;
     }
 
     /**
@@ -342,6 +350,57 @@ class USC_Screenings {
         include_once('USC_Screening_PostType.php');
         new USCScreening_PostType( 'usc_screenings' );
 
+    }
+
+    /**
+     * Checks if provided template path points to a 'usc_screenings' template recognised by our humble little plugin.
+     * If no usc_screenings-single template is present the plug-in will pick the most appropriate
+     * option, first from the theme/child-theme directory then the plugin.
+     *
+     * @see     https://github.com/stephenharris/Event-Organiser/blob/1.7.3/includes/event-organiser-templates.php#L153
+     * @author  Stephen Harris
+     *
+     * @since    0.8.1
+     *
+     * @param string    $templatePath absolute path to template or filename (with .php extension)
+     * @param string    $context What the template is for ('single-usc_screenings', etc).
+     * @return bool     return true if template is recognised as a 'usc_screenings' template. False otherwise.
+     */
+    private function usc_screenings_is_screenings_template($templatePath,$context=''){
+
+        $template = basename($templatePath);
+
+        switch($context):
+            case 'usc_screenings';
+                return $template === 'single-usc_screenings.php';
+
+        endswitch;
+
+        return false;
+    }
+
+    /**
+     * Checks to see if appropriate templates are present in active template directory.
+     * Otherwises uses templates present in plugin's template directory.
+     * Hooked onto template_include'
+     *
+     * @see     https://github.com/stephenharris/Event-Organiser/blob/1.7.3/includes/event-organiser-templates.php#L192
+     * @author  Stephen Harris
+     *
+     * @since    0.8.1
+     *
+     * @param string $template Absolute path to template
+     * @return string Absolute path to template
+     */
+    public function usc_screenings_set_template( $template ) {
+
+        if( is_singular( 'usc_screenings' ) && ! $this->usc_screenings_is_screenings_template( $template,'usc_screenings' ) ){
+
+            //Viewing a single usc_screenings
+            $template = $this->usc_screenings_dir . 'templates/single-usc_screenings.php';
+        }
+
+        return $template;
     }
 
     /**

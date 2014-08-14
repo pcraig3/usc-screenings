@@ -56,7 +56,7 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'size'          =>  '40',
                 //'attributes'	=>	array()
             ),
-            array(	// date picker
+            /*array(	// date picker
                 'field_id'	    =>	'end_date',
                 'title'			=>  __( 'End Date', 'usc-screenings' ),
                 'description'	=> __( 'The final day of the runtime.', 'usc-screenings' ),
@@ -64,7 +64,7 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'type'			=> 'date',
                 'date_format'	=>	'yy-mm-dd',
                 'size'          =>  '40',
-            ),
+            ),*/
             array(	// Repeatable time picker fields
                 'field_id'	=>	'showtimes_repeatable',
                 'type'	=>	'time',
