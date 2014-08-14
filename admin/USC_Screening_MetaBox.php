@@ -81,30 +81,10 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
             array(
                 'field_id'		=> 'duration',
                 'type'			=> 'text',
-                'title'			=> __( 'Duration', 'usc-screenings' ),
-                'description'	=> __( 'How long is this screening?', 'usc-screenings' ),
-                'help'	=> __( 'How long is this screening?', 'usc-screenings' ),
+                'title'			=> __( 'Duration (in minutes)', 'usc-screenings' ),
+                'description'	=> __( 'How many minutes is this screening?', 'usc-screenings' ),
+                'help'	        => __( 'How many minutes is this screening?', 'usc-screenings' ),
             ),
-            /*  //rating?
-            array (
-                'field_id'		=> 'position',
-                'type'			=> 'radio',
-                'title'			=> __( 'Position*', 'usc-screenings' ),
-                'description'	=> __( '(required if position is paid)', 'usc-screenings' ),
-                'help'	        => __( 'What kind of position this job is for.', 'usc-screenings' ),
-                'label' => array(
-                    'ft_permanent'  => __( 'Full-Time Permanent', 'usc-screenings' ),
-                    'ft_contract'   => __( 'Full-Time Contract', 'usc-screenings' ),
-                    'pt_permanent'  => __( 'Part-Time Permanent', 'usc-screenings' ),
-                    'pt_contract'   => __( 'Part-Time Contract', 'usc-screenings' ),
-                    'honourarium'   => __( 'Honourarium', 'usc-screenings' ),
-                ),
-                'default' => 'volunteer',
-                'attributes'	=>	array(
-                    'class'	=>	'hidden',
-                ),
-            ),
-            */
             array (
                 'field_id'		=> 'rating',
                 'type'			=> 'radio',
@@ -153,9 +133,17 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'field_id'		=> 'alert',
                 'type'			=> 'text',
                 'title'			=> __( 'Alerts / Updates', 'usc-screenings' ),
-                'description'	=> __( 'Information entered here appears on the front page as well as the individual listings.', 'usc-screenings' ),
-                'help'			=> __( 'Information entered here appears on the front page as well as the individual listings.', 'usc-screenings' ),
+                'description'	=> __( 'Information entered here appears on the movie listing as well as the single page.', 'usc-screenings' ),
+                'help'			=> __( 'Information entered here appears on the movie listing as well as the single page.', 'usc-screenings' ),
             )
+        /* ,
+        array (
+            'field_id'		=> 'taxonomy_checklist',
+            'type'			=> 'taxonomy',
+            'title'			=> __( 'Departments', 'usc-screenings' ),
+            'taxonomy_slugs'	=>	array( 'departments' )
+        )
+        */
         );
 
         /*

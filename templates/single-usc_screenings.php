@@ -76,14 +76,67 @@
                                     'genre',
                                     'trailer_link',
                                     'official_site_link',
-                                    'duration',
                                     'rating',
                                     'content_advisories',
                                     'alert'
                                 );
 
-                                get_post_meta( $post->ID, 'official_site_link', true );
+                                //grab them all and just print them.  if statements for two of them.
 
+                                foreach($screening_meta_keys as &$meta_key) {
+
+                                    $html_string = get_post_meta( $post->ID, $meta_key, true ) ;
+
+                                    if(! empty($html_string) ) {
+
+                                        if( $meta_key === 'showtimes_repeatable' ) {
+
+                                            $showtimes = $html_string;
+                                            $html_string = '';
+
+                                            foreach( $showtimes as $showtime ) {
+
+                                                $html_string .= "Start Time: " . $showtime;
+
+                                                $duration = get_post_meta( $post->ID, 'duration', true ) ;
+
+                                                if( ! empty( $duration ) ) {
+
+                                                    $minutes = intval( $duration );
+
+                                                    $time = new DateTime( $showtime );
+                                                    $time->add(new DateInterval('PT' . $minutes . 'M'));
+
+                                                    $html_string .= " // End Time: " . $time->format('h:i a') . "</p><p>";
+                                                }
+                                            }
+
+                                        }
+                                        elseif ( $meta_key === 'content_advisories' ) {
+                                            //remove empty strings
+                                            $content_advisories = array_diff( explode('- ', $html_string), array( '' ));
+                                            $html_string = '';
+
+                                            foreach($content_advisories as $advisory){
+
+                                                $html_string .= '<span style="display:block">' . trim(trim($advisory), "-") . '</span>';
+                                            }
+                                        }
+                                        else {
+                                            ;
+                                        }
+
+                                        echo '<h4>';
+                                        echo ucwords( str_replace( '_', ' ', $meta_key ) );
+                                        echo '</h4>';
+                                        echo '<p>';
+                                        echo $html_string;
+                                        echo '</p>';
+                                    }
+                                }
+                                unset($meta_key);
+
+                                get_post_meta( $post->ID, 'official_site_link', true );
 
                                 ?>
                             </div> <!-- .entry-content -->
