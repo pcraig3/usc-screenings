@@ -105,6 +105,27 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 ),
             ),
             */
+            array (
+                'field_id'		=> 'rating',
+                'type'			=> 'radio',
+                'title'			=> __( 'Rating', 'usc-screenings' ),
+                'description'	=> __( 'Rating for this film.', 'usc-screenings' ),
+                'help'	        => __( 'Rating for this film.', 'usc-screenings' ),
+                'label' => array(
+                    'g'     => __( 'G', 'usc-screenings' ),
+                    'pg'    => __( 'PG', 'usc-screenings' ),
+                    '14a'   => __( '14A', 'usc-screenings' ),
+                    '18a'   => __( '18A', 'usc-screenings' ),
+                    'r'     => __( 'R', 'usc-screenings' ),
+                ),
+            ),
+            array(
+                'field_id'		=> 'content_advisories',
+                'type'			=> 'textarea',
+                'title'			=> __( 'Content Advisories', 'usc-screenings' ),
+                'description'	=> __( '(Newlines = hyphens)', 'usc-screenings' ),
+                'help'			=> __( 'More detail on content advisories.', 'usc-screenings' ),
+            ),
             array(
                 'field_id'		=> 'genre',
                 'type'			=> 'text',
@@ -127,15 +148,14 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'description'	=>	__( 'Link to the official site. (optional)', 'usc-screenings' ),
                 'description'	=>	__( 'Link to the official site. (optional)', 'usc-screenings' ),
                 'allow_external_source'	=>	true,
+            ),
+            array(
+                'field_id'		=> 'alert',
+                'type'			=> 'text',
+                'title'			=> __( 'Alerts / Updates', 'usc-screenings' ),
+                'description'	=> __( 'Information entered here appears on the front page as well as the individual listings.', 'usc-screenings' ),
+                'help'			=> __( 'Information entered here appears on the front page as well as the individual listings.', 'usc-screenings' ),
             )
-        /* ,
-        array (
-            'field_id'		=> 'taxonomy_checklist',
-            'type'			=> 'taxonomy',
-            'title'			=> __( 'Departments', 'usc-screenings' ),
-            'taxonomy_slugs'	=>	array( 'departments' )
-        )
-        */
         );
 
         /*
