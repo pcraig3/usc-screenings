@@ -85,10 +85,30 @@ class USC_Screenings {
 
         $this->add_screenings_post_type();
 
-        add_action( 'init', array( $this, 'explictly_add_post_thumbnails' ) );
+        add_action( 'init', array( $this, 'explictly_add_usc_screenings_thumbnails' ) );
         add_action( 'init',  array( $this, 'register_shortcodes' ) );
 
         add_filter( 'template_include', array( $this, 'usc_screenings_set_template' ) ) ;
+
+        add_filter( 'body_class', array( $this, 'usc_screenings_body_classes'), 100 );
+
+        /* #main-content .container:before */
+    }
+
+    /**
+     * Adds classes to the array of body classes.
+     *
+     * @uses body_class() filter
+     */
+    function usc_screenings_body_classes( $classes ) {
+
+        foreach($classes as $key => &$class)
+            if($class === 'et_right_sidebar' || $class === 'et_includes_sidebar')
+                unset($classes[$key]);
+
+        unset($class);
+
+        return array_values($classes);
     }
 
     /**
@@ -332,9 +352,8 @@ class USC_Screenings {
      *
      * @since    0.7.0
      */
-    public function explictly_add_post_thumbnails() {
+    public function explictly_add_usc_screenings_thumbnails() {
         add_theme_support( 'post-thumbnails', array( 'usc_screenings' ) );
-
     }
 
     /**
