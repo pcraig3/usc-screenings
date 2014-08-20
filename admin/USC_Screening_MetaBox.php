@@ -64,6 +64,12 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'type'			=> 'date',
                 'date_format'	=>	'yy-mm-dd',
                 'size'          =>  '40',
+
+            TERMIANTOR 22
+Friday Apr 22- Thursday Apr 28
+7:00 Nightly
+Sat and Sun 2:00
+NO SHOW MONDAY
             ),*/
             array(	// Repeatable time picker fields
                 'field_id'	=>	'showtimes_repeatable',
@@ -78,6 +84,37 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'description'	=>	__( 'The time(s) of day for the screening.', 'usc-screenings' ),
                 'help'	        =>	__( 'The time(s) of day for the screening.', 'usc-screenings' ),
             ),
+            array(	// Multiple checkbox items - for multiple checkbox items, set an array to the 'label' element.
+                'field_id'	=>	'if_weekend_showtimes',
+                'title'	=>	__( 'Alternate Weekend Showtimes?', 'admin-page-framework-demo' ),
+                'type'	=>	'checkbox',
+                'label'	=>	array(
+                    'friday'	=>	__( 'Friday', 'usc-screenings' ),
+                    'saturday'	=>	__( 'Saturday', 'usc-screenings' ),
+                    'sunday'	=>	__( 'Sunday', 'usc-screenings' ),
+                ),
+                'default'	=>	array(
+                    'friday'	=>	false,
+                    'saturday'	=>	false,
+                    'sunday'	=>	false,
+                ),
+                'description'	=> __( 'Which days have an alternate schedule?', 'usc-screenings' ),
+                'help'	        => __( 'Which days have an alternate schedule?', 'usc-screenings' ),
+                /* 'after_label'	=>	'<br />',*/
+            ),
+            array(	// Repeatable time picker fields
+                'field_id'	=>	'weekend_showtimes_repeatable',
+                'type'	=>	'time',
+                'title'	=>	__( 'Alternate Showtime(s)', 'usc-screenings' ),
+                'repeatable'	=> true,
+                'options'	=>	array(
+                    'hourGrid'		=>	12,
+                    'minuteGrid'	=>	30,
+                    'timeFormat'	=>	'hh:mm tt',
+                ),
+                'description'	=>	__( 'Alternate weekend showtimes.', 'usc-screenings' ),
+                'help'	        =>	__( 'Alternate weekend showtimes.', 'usc-screenings' ),
+            ),
             array(
                 'field_id'		=> 'duration',
                 'type'			=> 'text',
@@ -85,6 +122,7 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'description'	=> __( 'How many minutes is this screening?', 'usc-screenings' ),
                 'help'	        => __( 'How many minutes is this screening?', 'usc-screenings' ),
             ),
+
             array (
                 'field_id'		=> 'rating',
                 'type'			=> 'radio',
