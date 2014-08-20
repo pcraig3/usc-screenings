@@ -114,6 +114,9 @@ NO SHOW MONDAY
                 ),
                 'description'	=>	__( 'Alternate weekend showtimes.', 'usc-screenings' ),
                 'help'	        =>	__( 'Alternate weekend showtimes.', 'usc-screenings' ),
+                'attributes'	=>	array(
+                    'class'	=>	'hidden',
+                ),
             ),
             array(
                 'field_id'		=> 'duration',
@@ -174,26 +177,18 @@ NO SHOW MONDAY
                 'description'	=> __( 'Information entered here appears on the movie listing as well as the single page.', 'usc-screenings' ),
                 'help'			=> __( 'Information entered here appears on the movie listing as well as the single page.', 'usc-screenings' ),
             )
-        /* ,
-        array (
-            'field_id'		=> 'taxonomy_checklist',
-            'type'			=> 'taxonomy',
-            'title'			=> __( 'Departments', 'usc-screenings' ),
-            'taxonomy_slugs'	=>	array( 'departments' )
-        )
-        */
         );
 
-        /*
+
         $this->enqueueScript(
-            plugins_url('assets/js/reveal_job_pane.js', __FILE__ ),   // source url or path
-            array( 'usc_jobs' ),
+            plugins_url('assets/js/reveal-alternate-showtimes-pane.js', __FILE__ ),   // source url or path
+            array( 'usc_screenings' ),
             array(
-                'handle_id' => 'reveal_job_pane',     // this handle ID also is used as the object name for the translation array below.
+                'handle_id' => 'reveal_alternate_showtimes_pane',     // this handle ID also is used as the object name for the translation array below.
                 'dependencies ' => array('jquery'),
                 'in_footer' => true
             )
-        );*/
+        );
     }
 
     /** Draft if errors found in validation: http://stackoverflow.com/questions/5007748/modifying-wordpress-post-status-on-publish */
