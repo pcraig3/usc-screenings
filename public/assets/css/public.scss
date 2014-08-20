@@ -1,0 +1,241 @@
+/* This stylesheet is used to style the public-facing components of the plugin. */
+/* http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/ */
+/* ====== media ====== */
+.media, .bd {overflow:hidden; _overflow:visible; zoom:1;}
+.media .img {float:left; margin-right: 10px;}
+.media .img img{display:block;}
+.media .imgExt{float:right; margin-left: 10px;}
+
+.media .cf > * {
+
+  vertical-align: bottom;
+  display:        inline-block;
+  /* ie6/7 */
+  *display:       inline;
+  zoom:           1;
+}
+
+/* ====== making everything look okay ===== */
+$alert-green: rgb(25, 165, 93);
+$alert-green--transparent: rgba(25, 165, 93, .85);
+
+$orange-on-hover: #FF8730;
+
+.usc_screenings-shortcode {
+
+  position:       relative;
+  padding-top:    20px;
+  margin:         20px 10px;
+  border-top:     1px solid #CCC;
+  box-sizing:     border-box;
+
+  &:first-of-type {
+
+    border-top: none;
+  }
+
+  * {
+
+    box-sizing: border-box;
+  }
+
+  .usc_screenings__content p,
+  .usc_screenings__content p:last-of-type {
+
+    padding-bottom: .45em !important;
+  }
+
+  .usc_screenings__alert {
+
+    box-sizing:       border-box;
+    padding:          5px 5px 5px 0;
+    color:            #ffffff;
+    background-color: $alert-green;
+    position:         relative;
+    margin-bottom:    1em;
+
+    &:hover {
+
+      background-color: $alert-green--transparent;
+    }
+
+    .usc_screenings__alert__message {
+
+      display: inline-block;
+      padding-left: 1.4em;
+      cursor:       default;
+    }
+
+  }
+
+  .etmodules {
+
+    margin: 10px;
+
+    &:before {
+
+      font-family: 'ETmodules';
+      padding: 0 0 0 12px;
+      font-weight: 400;
+      font-size: 1.4em;
+      position: absolute;
+      padding: 1px;
+    }
+  }
+  .icon_error-triangle:before {
+    content: "\e063";; /* icon_error-triangle */
+    color:  #FFFFFF;
+  }
+
+  .usc_screenings__showtimes,
+  .usc_screenings__links {
+
+    float: left;
+  }
+
+  .subhead {
+
+    min-width: 65px;
+    display: inline-block;
+    font-weight: 600;
+  }
+
+  .usc_screenings__showtimes {
+
+    width:  55%;
+
+    p {
+
+      line-height: 1.2em;
+      padding-bottom: .1em;
+    }
+
+    .dates {
+
+      font-weight: 700;
+      font-style: italic;
+      padding: .8em 0;
+    }
+
+    .subhead {
+
+      font-weight: 400;
+    }
+
+    .showtime {
+
+      border: 1px solid #CCC;
+      background-color: #FFF;
+      display: inline-block;
+      margin: 1px;
+      padding: 3px;
+
+      &:hover {
+
+        border: 1px solid #AAAAAA;
+        cursor: default;
+      }
+    }
+  }
+
+  .usc_screenings__links {
+
+    width: 45%;
+
+    a {
+      color:            #FFF;
+      background-color: #666;
+      text-align:       center;
+      padding:          5px;
+      display:          inline-block;
+      margin-top:       1em;
+      width:            100%;
+      transition:       all 0.2s ease 0s;
+
+      &:hover {
+        background-color: $orange-on-hover;
+      }
+    }
+  }
+}
+
+.bd__head .movie_title {
+  font-size:      1.6em;
+  color: #666;
+}
+
+#main-content .container:before {
+
+  width:   0px;
+  display: none;
+}
+
+
+@media screen and (max-width: 767px) {
+
+  .usc_screenings-shortcode {
+
+    .bd__head .movie_title {
+      font-size:      2.6em;
+    }
+
+    .media .img,
+    .bd p {
+
+      display: none;
+
+      &.rating {
+
+        display: block;
+        font-size: 1.2em;
+      }
+
+    }
+
+    .usc_screenings__showtimes,
+    .usc_screenings__links {
+
+      width: 100%;
+
+      .dates {
+
+        font-size:  1.2em;
+        padding:    0 0 .8em 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+
+  .et_pb_all_tabs {
+
+    padding: 10px 12px;
+  }
+
+  .usc_screenings-shortcode {
+
+    .bd__head .movie_title {
+      font-size:      2.8em;
+    }
+
+    .etmodules {
+      display: none;
+    }
+
+
+    .usc_screenings__showtimes {
+
+      p {
+
+        padding-bottom: 1em;
+      }
+
+      .subhead {
+
+        width: 100%;
+      }
+    }
+  }
+}
+

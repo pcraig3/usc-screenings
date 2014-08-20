@@ -216,61 +216,7 @@ class USC_Screenings {
                 //don't show the movie if there's no start date
                 if( !empty( $start_date ) ) {
 
-                    $html_string .=  '<div class="media attribution">';
-
-                    $html_string .=     '<a href="' . get_permalink() . '" class="img">';
-                    $html_string .=         get_the_post_thumbnail( $post->ID, 'thumbnail' );
-                    $html_string .=     '</a>';
-
-                    $html_string .=     '<div class="bd">';
-
-                    $html_string .=         '<div class="bd__head">';
-                    $html_string .=             '<h2 class="movie_title">';
-                    $html_string .=                 get_the_title(); //there is ALWAYS a title.
-                    $html_string .=             '</h2>';
-                    $html_string .=         '</div><!-- end .bd__head -->';
-
-                    $html_string .=         '<div class="bd__gut">';
-                    $html_string .=             '<p>';
-                    $html_string .=                 get_the_excerpt(); //we are assuming that there will either be an excerpt or description.
-                    $html_string .=             '</p>';
-                    $html_string .=         '</div><!-- end .bd__gut -->';
-
-                    $html_string .=         '<div class="bd__foot">';
-
-                    $html_string .=             '<div class="bd__foot__left">';
-
-                    $html_string .=                 '<p class="dates">';
-                    $html_string .=                     esc_html( $this->return_date_range_string( $start_date, get_post_meta( $post->ID, 'end_date', true ) ) );
-                    $html_string .=                 '</p>';
-
-                    $html_string .=                 '<p class="showtimes">';
-                    $html_string .=                     esc_html( $this->return_showtimes_string( get_post_meta( $post->ID, 'showtimes_repeatable', true ) ) );
-                    $html_string .=                 '</p>';
-
-
-                    $html_string .=             '</div><!-- end .bd__foot__left -->';
-
-                    //get_post_meta( $post->ID, 'start_date', true ), get_post_meta( $post->ID, 'end_date', true )
-
-                    $html_string .=             '<div class="bd__foot__right cf">';
-
-                    $official_site_link = get_post_meta( $post->ID, 'official_site_link', true );
-
-                    if( !empty( $official_site_link ) )
-                        $html_string .=             '<a href="' . esc_url( $official_site_link ) . '" alt="link to official site">Official Site</a>';
-
-                    $trailer_link = get_post_meta( $post->ID, 'trailer_link', true );
-
-                    if( !empty( $trailer_link ) )
-                        $html_string .=                 '<a href="' . esc_url( $trailer_link ) . '" alt="link to trailer">View Trailer</a>';
-
-                    $html_string .=             '</div><!-- end .bd__foot__right -->';
-
-                    $html_string .=         '</div><!-- end .bd__foot -->';
-                    $html_string .=     '</div><!-- end .bd -->';
-                    $html_string .= '</div><!-- end .media -->';
-
+                    $html_string .= require('views/usc_screenings-shortcode.php');
                 }
             }
 
@@ -337,15 +283,55 @@ class USC_Screenings {
 
                 $showtime = array_shift( $showtimes_array );
 
-                $showtimes_string .= ( !empty( $showtime ) ) ? $showtime . ' | ' : '' ;
+                $showtimes_string .= ( !empty( $showtime ) ) ? '<span class="showtime">' . $showtime . '</span>' : '' ;
             }
             unset( $showtime );
-
-            $showtimes_string = trim( $showtimes_string, ' | ' );
         }
 
         return $showtimes_string;
     }
+
+    /**
+     * Very similar to the last one, except here we also get an array of days.
+     * If the array of days is empty, no showtimes.
+     * Else, return the days as the subheading for our showtimes.
+     *
+     * @since    0.7.0
+     *
+     * @param $days_array       an array of days for this screening
+     * @param $showtimes_array  an array of showtimes for a screening
+     * @return string           a formatted string of all of the showtimes prepended by the number of days.
+     */
+    private function return_alternate_showtimes_date_string( $days_array, $showtimes_array ) {
+
+        $showtimes_string = '';
+
+        //basically, create an array of days that have 1s
+        foreach( $days_array as $key => $day )
+            if( 0 === intval( $day ) )
+                unset( $days_array[$key] );
+
+        if( empty( $days_array ) )
+            return '';
+
+        else {
+
+            $days_array = array_keys( $days_array );
+
+            $last_day = array_pop( $days_array );
+
+            $showtimes_string .= implode(", ", $days_array) . " & " . $last_day;
+        }
+
+        $showtimes_string = '<span class="subhead">' . ucwords( $showtimes_string ) . ':</span>'
+            . $this->return_showtimes_string( $showtimes_array );
+
+        return $showtimes_string;
+
+    }
+
+
+
 
     /**
      * *Some* themes don't support post-thumbnails.  This function makes sure that they do.

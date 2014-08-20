@@ -42,11 +42,12 @@ jQuery(function ($) {
         }
         else {
 
-            $first_showtime = $weekend_showtimes_repeatable_row.addClass('hidden')
-                .find('#field-weekend_showtimes_repeatable__0');
+            $weekend_showtimes_repeatable_row.addClass('hidden');
 
-            $first_showtime.find('input').val('');
+            $first_showtime = $weekend_showtimes_repeatable_row.find('#field-weekend_showtimes_repeatable__0');
             $first_showtime.siblings().remove();
+            $first_showtime.find('input').val('');
+
         }
     }
 

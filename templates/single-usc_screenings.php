@@ -3,191 +3,220 @@
     <div id="main-content">
 
 
-        <div class="et_pb_section et_section_regular" style="background:yellow">
+    <div class="et_pb_section et_section_regular" style="background:yellow">
 
 
 
-            <div class="et_pb_row">
-                <div class="et_pb_column et_pb_column_4_4">
-                    <a href="<?php echo trailingslashit(site_url()); ?>">
+        <div class="et_pb_row">
+            <div class="et_pb_column et_pb_column_4_4">
+                <a href="<?php echo trailingslashit(site_url()); ?>">
                     <div class="et_pb_text et_pb_bg_layout_light et_pb_text_align_left" style="background:lightblue">
                         Back to Western Film.
                     </div> <!-- .et_pb_text --></a>
-                </div> <!-- .et_pb_column -->
-            </div> <!-- .et_pb_row -->
+            </div> <!-- .et_pb_column -->
+        </div> <!-- .et_pb_row -->
 
-        </div>
-
-
-
-        <div class="container">
-            <div id="content-area" class="clearfix">
-                    <?php while ( have_posts() ) : the_post(); ?>
-
-                        <article id="post-<?php the_ID(); ?>" <?php post_class( 'et_pb_post' ); ?>>
-
-
-                            <div class="et_pb_section et_section_regular">
+    </div>
 
 
 
-                                <div class="et_pb_row">
-                                    <div class="et_pb_column et_pb_column_1_3">
+    <div class="container">
+        <div id="content-area" class="clearfix">
+            <?php while ( have_posts() ) : the_post(); ?>
 
-                                        <!-- in here we put the image and the trailer and the official site. -->
-
-                                        <?php
-
-
-                                        $thumb = '';
-
-                                        $width = (int) apply_filters( 'et_pb_index_blog_image_width', 1080 );
-                                        $height = (int) apply_filters( 'et_pb_index_blog_image_height', 675 );
-                                        $classtext = 'et_featured_image';
-                                        $titletext = get_the_title();
-                                        $thumbnail = get_thumbnail( $width, $height, $classtext, $titletext, $titletext, false, 'Blogimage' );
-                                        $thumb = $thumbnail["thumb"];
-
-                                        print_thumbnail( $thumb, $thumbnail["use_timthumb"], $titletext, $width, $height );
-
-                                        echo '<h4>Trailer Link</h4>';
-                                        echo '<p>' . get_post_meta( $post->ID, 'trailer_link', true ) . '</p>';
-
-                                        echo '<h4>Official Site Link</h4>';
-                                        echo '<p>' . get_post_meta( $post->ID, 'official_site_link', true ) . '</p>';
-
-                                        ?>
-
-                                    </div> <!-- .et_pb_column -->
-                                    <div class="et_pb_column et_pb_column_2_3">
+                <article id="post-<?php the_ID(); ?>" <?php post_class( 'et_pb_post' ); ?>>
 
 
-                                        <!-- in here we put the title and all the content-->
-                                        <h1><?php the_title(); ?></h1>
-                                        <? /* Pretty sure we don't need this: et_divi_post_meta(); */ ?>
+                    <div class="et_pb_section et_section_regular">
 
-                                        <div class="entry-content">
-                                            <?php
 
-                                            the_content();
 
-                                            $html_string = '';
+                        <div class="et_pb_row">
+                            <div class="et_pb_column et_pb_column_1_3">
 
-                                            /*
-                                            So, returning one that exists returns either a string or an array (depending repeatable)
-                                            Returning one that's empty returns an empty string.
-                                            Returning a value that was never there returns an empty string
+                                <!-- in here we put the image and the trailer and the official site. -->
 
-                                            var_dump( get_post_meta( $post->ID, 'duration', true ) );
+                                <?php
 
-                                            var_dump( get_post_meta( $post->ID, 'official_site_link', true ) );
 
-                                            var_dump( get_post_meta( $post->ID, 'this_doesnt_exist', true ) );
+                                $thumb = '';
 
-                                            awesome.  Here's the sum total of things a movie has.
-                                            (indented the stuff we don't care about)
+                                $width = (int) apply_filters( 'et_pb_index_blog_image_width', 1080 );
+                                $height = (int) apply_filters( 'et_pb_index_blog_image_height', 675 );
+                                $classtext = 'et_featured_image';
+                                $titletext = get_the_title();
+                                $thumbnail = get_thumbnail( $width, $height, $classtext, $titletext, $titletext, false, 'Blogimage' );
+                                $thumb = $thumbnail["thumb"];
 
-                                            array(12) {
-                                                ["_edit_lock"]=>
-                                                ["_edit_last"]=>
-                                            ["start_date"]=>            //string
-                                            ["end_date"]=>              //string
-                                            ["showtimes_repeatable"]=>  //array
-                                            ["genre"]=>                 //string
-                                            ["trailer_link"]=>          //string
-                                            ["official_site_link"]=>    //string
-                                                ["_thumbnail_id"]=>
-                                            ["duration"]=>              //string
-                                            ["rating"]=>                //string
-                                            ["content_advisories"]=>    //string
-                                            ["alert"]=>                 //string
-                                            */
-                                            //print all the meta values here that you can think of.
-                                            $screening_meta_keys = array(
-                                                'start_date',
-                                                'end_date',
-                                                'showtimes_repeatable',
-                                                'genre',
-                                                'rating',
-                                                'content_advisories',
-                                                'alert'
-                                            );
+                                print_thumbnail( $thumb, $thumbnail["use_timthumb"], $titletext, $width, $height );
 
-                                            //grab them all and just print them.  if statements for two of them.
+                                echo '<h4>Trailer Link</h4>';
+                                echo '<p>' . get_post_meta( $post->ID, 'trailer_link', true ) . '</p>';
 
-                                            foreach($screening_meta_keys as &$meta_key) {
+                                echo '<h4>Official Site Link</h4>';
+                                echo '<p>' . get_post_meta( $post->ID, 'official_site_link', true ) . '</p>';
 
-                                                $html_string = get_post_meta( $post->ID, $meta_key, true ) ;
+                                ?>
 
-                                                if(! empty($html_string) ) {
+                            </div> <!-- .et_pb_column -->
+                            <div class="et_pb_column et_pb_column_2_3">
 
-                                                    if( $meta_key === 'showtimes_repeatable' ) {
 
-                                                        $showtimes = $html_string;
-                                                        $html_string = '';
+                                <!-- in here we put the title and all the content-->
+                                <h1><?php the_title(); ?></h1>
+                                <? /* Pretty sure we don't need this: et_divi_post_meta(); */ ?>
 
-                                                        foreach( $showtimes as $showtime ) {
+                                <div class="entry-content">
+                                    <?php
 
-                                                            $html_string .= "Start Time: " . $showtime;
+                                    the_content();
 
-                                                            $duration = get_post_meta( $post->ID, 'duration', true ) ;
+                                    $html_string = '';
 
-                                                            if( ! empty( $duration ) ) {
+                                    /*
+                                    So, returning one that exists returns either a string or an array (depending repeatable)
+                                    Returning one that's empty returns an empty string.
+                                    Returning a value that was never there returns an empty string
+                                    */
+                                    //wp_die(var_dump( get_post_meta( $post->ID, 'weekend_showtimes_repeatable', true ) ));
+                                    /*
+                                    var_dump( get_post_meta( $post->ID, 'official_site_link', true ) );
 
-                                                                $minutes = intval( $duration );
+                                    var_dump( get_post_meta( $post->ID, 'this_doesnt_exist', true ) );
 
-                                                                $time = new DateTime( $showtime );
-                                                                $time->add(new DateInterval('PT' . $minutes . 'M'));
+                                    awesome.  Here's the sum total of things a movie has.
+                                    (indented the stuff we don't care about)
 
-                                                                $html_string .= " // End Time: " . $time->format('h:i a') . "</p><p>";
-                                                            }
-                                                        }
+                                    array(12) {
+                                        ["_edit_lock"]=>
+                                        ["_edit_last"]=>
+                                    ["start_date"]=>                    //string
+                                    ["end_date"]=>                      //string
+                                    ["showtimes_repeatable"]=>          //array
+                                    ["if_weekend_showtimes"]=>          //array
+                                    ["weekend_showtimes_repeatable"]=>  //array
+                                    ["genre"]=>                         //string
+                                    ["trailer_link"]=>                  //string
+                                    ["official_site_link"]=>            //string
+                                        ["_thumbnail_id"]=>
+                                    ["duration"]=>                      //string
+                                    ["rating"]=>                        //string
+                                    ["content_advisories"]=>            //string
+                                    ["alert"]=>                         //string
+                                    */
+                                    //print all the meta values here that you can think of.
+                                    //@TODO: test what happens if there's a day picked with no other time.
+                                    $screening_meta_keys = array(
+                                        'start_date', //0
+                                        'end_date',
+                                        'showtimes_repeatable', //2
+                                        'if_weekend_showtimes',
+                                        'weekend_showtimes_repeatable', //4
+                                        'genre',
+                                        'rating',
+                                        'content_advisories',
+                                        'alert'
+                                    );
 
+                                    //grab them all and just print them.  if statements for two of them.
+
+                                    foreach($screening_meta_keys as &$meta_key) {
+
+                                        $html_string = get_post_meta( $post->ID, $meta_key, true ) ;
+
+                                        if(! empty($html_string) ) {
+
+                                            if( $meta_key === 'if_weekend_showtimes' ) {
+
+                                                $if_weekend_showtimes = $html_string;
+                                                $html_string = '';
+
+                                                //basically, create an array of days that have 1s
+                                                foreach( $if_weekend_showtimes as $key => $if_weekend_showtime )
+                                                    if( 0 === intval( $if_weekend_showtime ))
+                                                        unset( $if_weekend_showtimes[$key] );
+
+                                                if( empty($if_weekend_showtimes) )
+                                                    unset($screening_meta_keys[4]);
+
+                                                else {
+
+                                                    $if_weekend_showtimes = array_keys( $if_weekend_showtimes );
+
+                                                    $last_day = array_pop( $if_weekend_showtimes );
+
+                                                    $html_string .= implode(", ", $if_weekend_showtimes) . " & " . $last_day;
+                                                }
+
+                                            }
+
+                                            if( $meta_key === 'showtimes_repeatable' || $meta_key === 'weekend_showtimes_repeatable' ) {
+
+                                                $showtimes = array_filter( $html_string );
+                                                $html_string = '';
+
+                                                foreach( $showtimes as $showtime ) {
+
+                                                    $html_string .= "Start Time: " . $showtime;
+
+                                                    $duration = get_post_meta( $post->ID, 'duration', true ) ;
+
+                                                    if( ! empty( $duration ) ) {
+
+                                                        $minutes = intval( $duration );
+
+                                                        $time = new DateTime( $showtime );
+                                                        $time->add(new DateInterval('PT' . $minutes . 'M'));
+
+                                                        $html_string .= " // End Time: " . $time->format('h:i a') . "</p><p>";
                                                     }
-                                                    elseif ( $meta_key === 'content_advisories' ) {
-                                                        //remove empty strings
-                                                        $content_advisories = array_diff( explode('- ', $html_string), array( '' ));
-                                                        $html_string = '';
+                                                }
 
-                                                        foreach($content_advisories as $advisory){
+                                            }
+                                            elseif ( $meta_key === 'content_advisories' ) {
+                                                //remove empty strings
+                                                $content_advisories = array_diff( explode('- ', $html_string), array( '' ));
+                                                $html_string = '';
 
-                                                            $html_string .= '<span style="display:block">' . trim(trim($advisory), "-") . '</span>';
-                                                        }
-                                                    }
-                                                    else {
-                                                        ;
-                                                    }
+                                                foreach($content_advisories as $advisory){
 
-                                                    echo '<h4>';
-                                                    echo ucwords( str_replace( '_', ' ', $meta_key ) );
-                                                    echo '</h4>';
-                                                    echo '<p>';
-                                                    echo $html_string;
-                                                    echo '</p>';
+                                                    $html_string .= '<span style="display:block">' . trim(trim($advisory), "-") . '</span>';
                                                 }
                                             }
-                                            unset($meta_key);
+                                            else {
+                                                ;
+                                            }
 
-                                            get_post_meta( $post->ID, 'official_site_link', true );
+                                            echo '<h4>';
+                                            echo ucwords( str_replace( '_', ' ', $meta_key ) );
+                                            echo '</h4>';
+                                            echo '<p>';
+                                            echo $html_string;
+                                            echo '</p>';
+                                        }
+                                    }
+                                    unset($meta_key);
 
-                                            ?>
-                                        </div> <!-- .entry-content -->
+                                    get_post_meta( $post->ID, 'official_site_link', true );
+
+                                    ?>
+                                </div> <!-- .entry-content -->
 
 
-                                    </div> <!-- .et_pb_column -->
-                                </div> <!-- .et_pb_row -->
+                            </div> <!-- .et_pb_column -->
+                        </div> <!-- .et_pb_row -->
 
-                            </div>
+                    </div>
 
 
 
-                        </article> <!-- .et_pb_post -->
+                </article> <!-- .et_pb_post -->
 
-                        <?php if (et_get_option('divi_integration_single_bottom') <> '' && et_get_option('divi_integrate_singlebottom_enable') == 'on') echo(et_get_option('divi_integration_single_bottom')); ?>
-                    <?php endwhile; ?>
+                <?php if (et_get_option('divi_integration_single_bottom') <> '' && et_get_option('divi_integrate_singlebottom_enable') == 'on') echo(et_get_option('divi_integration_single_bottom')); ?>
+            <?php endwhile; ?>
 
-            </div> <!-- #content-area -->
-        </div> <!-- .container -->
+        </div> <!-- #content-area -->
+    </div> <!-- .container -->
     </div> <!-- #main-content -->
 
 <?php get_footer(); ?>

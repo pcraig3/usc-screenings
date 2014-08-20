@@ -56,7 +56,7 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'size'          =>  '40',
                 //'attributes'	=>	array()
             ),
-            /*array(	// date picker
+            array(	// date picker
                 'field_id'	    =>	'end_date',
                 'title'			=>  __( 'End Date', 'usc-screenings' ),
                 'description'	=> __( 'The final day of the runtime.', 'usc-screenings' ),
@@ -64,13 +64,7 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'type'			=> 'date',
                 'date_format'	=>	'yy-mm-dd',
                 'size'          =>  '40',
-
-            TERMIANTOR 22
-Friday Apr 22- Thursday Apr 28
-7:00 Nightly
-Sat and Sun 2:00
-NO SHOW MONDAY
-            ),*/
+            ),
             array(	// Repeatable time picker fields
                 'field_id'	=>	'showtimes_repeatable',
                 'type'	=>	'time',
@@ -89,14 +83,14 @@ NO SHOW MONDAY
                 'title'	=>	__( 'Alternate Weekend Showtimes?', 'admin-page-framework-demo' ),
                 'type'	=>	'checkbox',
                 'label'	=>	array(
-                    'friday'	=>	__( 'Friday', 'usc-screenings' ),
-                    'saturday'	=>	__( 'Saturday', 'usc-screenings' ),
-                    'sunday'	=>	__( 'Sunday', 'usc-screenings' ),
+                    'fri'	=>	__( 'Friday', 'usc-screenings' ),
+                    'sat'	=>	__( 'Saturday', 'usc-screenings' ),
+                    'sun'	=>	__( 'Sunday', 'usc-screenings' ),
                 ),
                 'default'	=>	array(
-                    'friday'	=>	false,
-                    'saturday'	=>	false,
-                    'sunday'	=>	false,
+                    'fri'	=>	false,
+                    'sat'	=>	false,
+                    'sun'	=>	false,
                 ),
                 'description'	=> __( 'Which days have an alternate schedule?', 'usc-screenings' ),
                 'help'	        => __( 'Which days have an alternate schedule?', 'usc-screenings' ),
@@ -114,9 +108,9 @@ NO SHOW MONDAY
                 ),
                 'description'	=>	__( 'Alternate weekend showtimes.', 'usc-screenings' ),
                 'help'	        =>	__( 'Alternate weekend showtimes.', 'usc-screenings' ),
-                'attributes'	=>	array(
+                /*'attributes'	=>	array(
                     'class'	=>	'hidden',
-                ),
+                ),*/
             ),
             array(
                 'field_id'		=> 'duration',
