@@ -53,12 +53,12 @@ ob_start();
 
                 <?php  }  ?>
 
-                <?php
+                <?php /*
 
                 if( '' !== ( $duration = get_post_meta( $post->ID, 'duration', true ) ) )  { ?>
                     <p class="genre"><span class="subhead">Time:</span><?php echo esc_html( $duration ); ?></p>
 
-                <?php  }  ?>
+                <?php  }*/  ?>
 
             </div><!-- end .bd__foot -->
         </div><!-- end .bd -->
@@ -98,7 +98,7 @@ ob_start();
         $official_site_link = get_post_meta( $post->ID, 'official_site_link', true );
 
         if( !empty( $official_site_link ) ) { ?>
-            <a href="<?php echo esc_url( $official_site_link ); ?>" alt="link to official site">Official Site</a>
+            <a href="<?php echo esc_url( $official_site_link ); ?>" alt="link to official site" target="_blank">Official Site</a>
 
         <?php
 
@@ -107,7 +107,7 @@ ob_start();
         $trailer_link = get_post_meta( $post->ID, 'trailer_link', true );
 
         if( !empty( $trailer_link ) ) { ?>
-            <a href="<?php echo esc_url( $trailer_link ); ?>" alt="link to trailer">View Trailer</a>
+            <a href="<?php echo esc_url( $trailer_link ); ?>" alt="link to trailer" target="_blank">View Trailer</a>
 
         <?php
 

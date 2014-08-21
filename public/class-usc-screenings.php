@@ -320,7 +320,9 @@ class USC_Screenings {
 
             $last_day = array_pop( $days_array );
 
-            $showtimes_string .= implode(", ", $days_array) . " & " . $last_day;
+            $showtimes_string .= implode(", ", $days_array); //. " & " . $last_day;
+
+            $showtimes_string .= ( !empty( $showtimes_string ) ) ? ' & ' . $last_day : $last_day;
         }
 
         $showtimes_string = '<span class="subhead">' . ucwords( $showtimes_string ) . ':</span>'
