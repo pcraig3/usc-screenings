@@ -6,7 +6,7 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
      *
      * @remark  this is a pre-defined framework method
      *
-     * @since    0.7.0
+     * @since    0.8.0
      */
     public function start_USC_Screening_MetaBox() { // start_{extended class name} - this method gets automatically triggered at the end of the class constructor.
 
@@ -37,8 +37,10 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
 
     }
 
-    /*
+    /**
      * ( optional ) Use the setUp() method to define settings of this meta box.
+     *
+     * @since    0.8.0
      */
     public function setUp() {
 
@@ -267,6 +269,8 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
 
     /**
      * Check if an item exists out there in the "ether".
+     *
+     * @since    0.8.0
      *
      * @param string $url - preferably a fully qualified URL
      * @return boolean - true if it is out there somewhere

@@ -23,11 +23,11 @@ class USC_Screenings {
     /**
      * Plugin version, used for cache-busting of style and script file references.
      *
-     * @since   0.7.0
+     * @since   0.8.0
      *
      * @var     string
      */
-    const VERSION = '0.7.0';
+    const VERSION = '0.8.0';
 
     /**
      *
@@ -134,7 +134,7 @@ class USC_Screenings {
      * starting date.
      * Then, once you have them, build the HTML for each one and return it to the screen.  Easy.
      *
-     * @since    0.7.0
+     * @since    0.8.0
      *
      * @param $atts     parameters entered in along with the shortcode
      * @return string   the html for valid screenings, or an error message if none or found or the shortcode is used incorrectly
@@ -296,7 +296,7 @@ class USC_Screenings {
      * If the array of days is empty, no showtimes.
      * Else, return the days as the subheading for our showtimes.
      *
-     * @since    0.7.0
+     * @since    0.8.0
      *
      * @param $days_array       an array of days for this screening
      * @param $showtimes_array  an array of showtimes for a screening

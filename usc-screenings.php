@@ -12,7 +12,7 @@
  * Plugin Name:       USC Screenings
  * Plugin URI:        http://testwestern.com
  * Description:       Creates the 'Screening' Custom Post Type and registers a shortcode to call them
- * Version:           0.7.0
+ * Version:           0.8.0
  * Author:            Paul Craig
  * Author URI:        https://profiles.wordpress.org/pcraig3/
  * Text Domain:       usc-screenings

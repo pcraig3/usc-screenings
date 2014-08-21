@@ -4,7 +4,7 @@ Donate link: http://example.com/
 Tags: comments, spam
 Requires at least: 3.5.1
 Tested up to: 3.6
-Stable tag: 0.7.0
+Stable tag: 0.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,13 @@ No.  Maybe once we're at August 22nd.
 
 
 == Changelog ==
+
+= 0.8.0 =
+* Redid all the front-age screenings.
+* Made them mobile-responsive as well.
+* Added a few extra fields James wanted
+* Isolated all of the code for the usc_screening shortcode
+* Working on the single-page view for Screenings.
 
 = 0.7.0 =
 * Not to be cocky, but I think I've nearly wrapped this one up.
