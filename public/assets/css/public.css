@@ -25,6 +25,31 @@
   zoom: 1; }
 
 /* ====== making everything look okay ===== */
+.single-usc_screenings #main-content .container {
+  padding-top: 0; }
+  .single-usc_screenings #main-content .container:before {
+    width: 0px;
+    display: none; }
+
+.usc_screenings-shortcode .etmodules:before,
+.type-usc_screenings .etmodules:before {
+  font-family: 'ETmodules';
+  font-weight: 400;
+  position: absolute; }
+.usc_screenings-shortcode .usc_screenings__link,
+.type-usc_screenings .usc_screenings__link {
+  color: #FFF;
+  background-color: #666;
+  text-align: center;
+  padding: 5px;
+  display: inline-block;
+  margin-top: 1em;
+  width: 100%;
+  transition: all 0.2s ease 0s; }
+  .usc_screenings-shortcode .usc_screenings__link:hover,
+  .type-usc_screenings .usc_screenings__link:hover {
+    background-color: #ff8730; }
+
 .usc_screenings-shortcode {
   position: relative;
   padding-top: 20px;
@@ -51,19 +76,17 @@
       display: inline-block;
       padding-left: 1.4em;
       cursor: default; }
-  .usc_screenings-shortcode .etmodules {
-    margin: 10px; }
-    .usc_screenings-shortcode .etmodules:before {
-      font-family: 'ETmodules';
-      padding: 0 0 0 12px;
-      font-weight: 400;
-      font-size: 1.4em;
-      position: absolute;
-      padding: 1px; }
-  .usc_screenings-shortcode .icon_error-triangle:before {
-    content: "\e063";
-    /* icon_error-triangle */
-    color: #FFFFFF; }
+    .usc_screenings-shortcode .usc_screenings__alert .icon_error-triangle {
+      margin: 10px; }
+      .usc_screenings-shortcode .usc_screenings__alert .icon_error-triangle:before {
+        padding: 1px;
+        font-size: 1.4em;
+        content: "\e063";
+        /* icon_error-triangle */
+        color: #FFFFFF; }
+  .usc_screenings-shortcode .usc_screenings__title {
+    font-size: 1.6em;
+    color: #666; }
   .usc_screenings-shortcode .usc_screenings__showtimes,
   .usc_screenings-shortcode .usc_screenings__links {
     float: left; }
@@ -93,28 +116,68 @@
         cursor: default; }
   .usc_screenings-shortcode .usc_screenings__links {
     width: 45%; }
-    .usc_screenings-shortcode .usc_screenings__links a {
-      color: #FFF;
-      background-color: #666;
-      text-align: center;
-      padding: 5px;
+
+.type-usc_screenings * {
+  box-sizing: border-box; }
+.type-usc_screenings .entry-content div[class^="usc_screenings"] {
+  margin-bottom: 1em; }
+.type-usc_screenings .subhead {
+  font-size: 0.9em;
+  font-weight: 700;
+  font-style: italic; }
+.type-usc_screenings .usc_screenings__title {
+  font-size: 3em; }
+  .type-usc_screenings .usc_screenings__title .etmodules {
+    display: none; }
+  .type-usc_screenings .usc_screenings__title.now_playing {
+    padding-left: 1em; }
+    .type-usc_screenings .usc_screenings__title.now_playing .etmodules {
+      display: inline; }
+    .type-usc_screenings .usc_screenings__title.now_playing .arrow_triangle-right_alt:before {
+      margin-top: -0.2em;
+      font-size: 1em;
+      margin-left: -1.1em;
+      content: "\49";
+      /* icon_error-triangle */ }
+.type-usc_screenings .usc_screenings__showtimes {
+  padding-bottom: 1em;
+  border-bottom: 1px dotted #CCC;
+  /* So that we can simulate same-sized columns
+  http://jsfiddle.net/kaAjW/2871/ */
+  overflow: hidden; }
+  .type-usc_screenings .usc_screenings__showtimes h2 {
+    margin: 0; }
+  .type-usc_screenings .usc_screenings__showtimes .showtimes__dates {
+    display: inline-block;
+    width: 100%; }
+  .type-usc_screenings .usc_screenings__showtimes .showtimes__dates--left,
+  .type-usc_screenings .usc_screenings__showtimes .showtimes__dates--right {
+    width: 50%;
+    float: left;
+    /* Arbitrarily large values so that we can set a background color. */
+    padding-bottom: 1000px;
+    margin-bottom: -1000px; }
+  .type-usc_screenings .usc_screenings__showtimes .showtimes__dates--playing {
+    background-color: #F2F2F2; }
+  .type-usc_screenings .usc_screenings__showtimes .showtimes__hours {
+    padding-bottom: .1em; }
+    .type-usc_screenings .usc_screenings__showtimes .showtimes__hours .showtime {
+      border: 1px solid #CCC;
+      background-color: #FFF;
       display: inline-block;
-      margin-top: 1em;
-      width: 100%;
-      transition: all 0.2s ease 0s; }
-      .usc_screenings-shortcode .usc_screenings__links a:hover {
-        background-color: #ff8730; }
-
-.bd__head .movie_title {
-  font-size: 1.6em;
-  color: #666; }
-
-#main-content .container:before {
-  width: 0px;
-  display: none; }
+      margin: 1px;
+      padding: 3px 8px; }
+      .type-usc_screenings .usc_screenings__showtimes .showtimes__hours .showtime:hover {
+        border: 1px solid #AAAAAA;
+        cursor: default; }
+      .type-usc_screenings .usc_screenings__showtimes .showtimes__hours .showtime:hover + .showtime__end {
+        color: #444; }
+    .type-usc_screenings .usc_screenings__showtimes .showtimes__hours .showtime__end {
+      font-size: 0.9em;
+      color: #AAA; }
 
 @media screen and (max-width: 767px) {
-  .usc_screenings-shortcode .bd__head .movie_title {
+  .usc_screenings-shortcode .usc_screenings__title {
     font-size: 2em; }
   .usc_screenings-shortcode .media .img,
   .usc_screenings-shortcode .bd p {
@@ -134,7 +197,7 @@
   .et_pb_all_tabs {
     padding: 10px 12px; }
 
-  .usc_screenings-shortcode .bd__head .movie_title {
+  .usc_screenings-shortcode .usc_screenings__title {
     font-size: 2.6em; }
   .usc_screenings-shortcode .etmodules {
     display: none; }

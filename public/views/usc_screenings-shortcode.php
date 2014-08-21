@@ -95,19 +95,19 @@ ob_start();
 
         <?php
 
-        $official_site_link = get_post_meta( $post->ID, 'official_site_link', true );
+        $official_site_link = esc_url( get_post_meta( $post->ID, 'official_site_link', true ) );
 
         if( !empty( $official_site_link ) ) { ?>
-            <a href="<?php echo esc_url( $official_site_link ); ?>" alt="link to official site" target="_blank">Official Site</a>
+            <a class="usc_screenings__link" href="<?php echo  $official_site_link; ?>" alt="link to official site" target="_blank">Official Site</a>
 
         <?php
 
         } //end of the $official_site_link if statement
 
-        $trailer_link = get_post_meta( $post->ID, 'trailer_link', true );
+        $trailer_link = esc_url( get_post_meta( $post->ID, 'trailer_link', true ) );
 
         if( !empty( $trailer_link ) ) { ?>
-            <a href="<?php echo esc_url( $trailer_link ); ?>" alt="link to trailer" target="_blank">View Trailer</a>
+            <a class="usc_screenings__link" href="<?php echo $trailer_link; ?>" alt="link to trailer" target="_blank">View Trailer</a>
 
         <?php
 

@@ -50,11 +50,27 @@
 
                                 print_thumbnail( $thumb, $thumbnail["use_timthumb"], $titletext, $width, $height );
 
-                                echo '<h4>Trailer Link</h4>';
-                                echo '<p>' . get_post_meta( $post->ID, 'trailer_link', true ) . '</p>';
+                                /* ~official_site_link */
+                                $official_site_link = esc_url( get_post_meta( $post->ID, 'official_site_link', true ) );
 
-                                echo '<h4>Official Site Link</h4>';
-                                echo '<p>' . get_post_meta( $post->ID, 'official_site_link', true ) . '</p>';
+                                if( !empty( $official_site_link ) ) { ?>
+                                    <a class="usc_screenings__link" href="<?php echo  $official_site_link; ?>" alt="link to official site" target="_blank">Official Site</a>
+
+                                <?php
+
+                                } //end of the $official_site_link if statement
+
+                                /* ~trailer_link */
+                                $video_url = esc_url( get_post_meta( $post->ID, 'trailer_link', true ) );
+                                if(!empty($video_url)) {
+
+                                    echo '<h2>Trailer</h2>';
+
+                                    $shortcode = '[embed]'.$video_url.'[/embed]';
+                                    $shortcode = '[embed]http://i.imgur.com/6bphR3T.gif[/embed]';
+                                    global $wp_embed;
+                                    echo $wp_embed->run_shortcode($shortcode);
+                                }
 
                                 ?>
 
@@ -63,14 +79,79 @@
 
 
                                 <!-- in here we put the title and all the content-->
-                                <h1><?php the_title(); ?></h1>
+                                <h1 class="usc_screenings__title now_playing">
+                                    <span title="The Past is playing at Western Film this week!" class="etmodules arrow_triangle-right_alt usc_screenings__title__icon"></span>
+                                    <?php the_title(); ?>
+                                </h1>
                                 <? /* Pretty sure we don't need this: et_divi_post_meta(); */ ?>
 
                                 <div class="entry-content">
+
+                                    <div class="usc_screenings__showtimes clearfix">
+                                        <h2>Playing: August 23 - 27</h2>
+
+                                        <div class="showtimes__dates showtimes__dates--left">
+                                            <h5>Regular Showtimes</h5>
+
+                                            <p class="showtimes__hours">
+                                                <span class="showtime">7:00 pm</span>
+
+                                                <span class="showtime__end">
+                                                    (ends at 8:37 pm)
+                                                </span>
+                                            </p>
+                                            <p class="showtimes__hours">
+                                                <span class="showtime">10:00 pm</span>
+
+                                                <span class="showtime__end">
+                                                    (ends at 11:37 pm)
+                                                </span>
+                                            </p>
+
+                                        </div>
+
+                                        <div class="showtimes__dates showtimes__dates--right">
+                                            <h5>Saturday - Sunday</h5>
+
+                                            <p class="showtimes__hours">
+                                                <span class="showtime">2:00 pm</span>
+
+                                                <span class="showtime__end">
+                                                    (ends at 3:37 pm)
+                                                </span>
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="usc_screenings__genre">
+                                        <span class="subhead">Genre:</span>
+                                        <p>Scary</p>
+                                    </div>
+
+                                    <div class="usc_screenings__synopsis">
+                                        <span class="subhead">Synopsis:</span>
+                                        <?php
+                                        //ob_start();
+                                        the_content();
+                                        //echo ob_get_clean();
+                                        ?>
+                                    </div>
+
+                                    <div class="usc_screenings__rating">
+                                        <span class="subhead">Rating:</span>
+                                        <p>14A</p>
+                                    </div>
+
+                                    <div class="usc_screenings__content_advisories">
+                                        <span class="subhead">Content Advisories:</span>
+                                        <p>Smoking, Drinking, Eating, Breathing.</p>
+                                    </div>
+
                                     <?php
 
-                                    the_content();
-
+                                    /*
                                     $html_string = '';
 
                                     /*
@@ -106,7 +187,7 @@
                                     */
                                     //print all the meta values here that you can think of.
                                     //@TODO: test what happens if there's a day picked with no other time.
-                                    $screening_meta_keys = array(
+                                    /*$screening_meta_keys = array(
                                         'start_date', //0
                                         'end_date',
                                         'showtimes_repeatable', //2
@@ -196,6 +277,7 @@
                                         }
                                     }
                                     unset($meta_key);
+                                    */
 
                                     get_post_meta( $post->ID, 'official_site_link', true );
 

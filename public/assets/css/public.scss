@@ -21,6 +21,71 @@ $alert-green--transparent: rgba(25, 165, 93, .85);
 
 $orange-on-hover: #FF8730;
 
+$alert-icon-font-size: 1.4;
+$title-icon-font-size: 1;
+
+
+@mixin usc_screening__showtime($padding: 3px) {
+
+  border: 1px solid #CCC;
+  background-color: #FFF;
+  display: inline-block;
+  margin: 1px;
+  padding: $padding;
+
+  &:hover {
+
+    border: 1px solid #AAAAAA;
+    cursor: default;
+  }
+}
+
+@mixin usc_screening__button() {
+
+  color:            #FFF;
+  background-color: #666;
+  text-align:       center;
+  padding:          5px;
+  display:          inline-block;
+  margin-top:       1em;
+  width:            100%;
+  transition:       all 0.2s ease 0s;
+
+  &:hover {
+    background-color: $orange-on-hover;
+  }
+
+}
+
+.single-usc_screenings #main-content .container{
+
+  padding-top: 0;
+
+  &:before {
+
+    width:   0px;
+    display: none;
+  }
+}
+
+.usc_screenings-shortcode,
+.type-usc_screenings {
+
+  .etmodules:before {
+
+    font-family: 'ETmodules';
+    font-weight: 400;
+    position: absolute;
+  }
+
+  .usc_screenings__link {
+
+    @include usc_screening__button();
+  }
+}
+
+
+
 .usc_screenings-shortcode {
 
   position:       relative;
@@ -61,30 +126,29 @@ $orange-on-hover: #FF8730;
 
     .usc_screenings__alert__message {
 
-      display: inline-block;
-      padding-left: 1.4em;
+      display:      inline-block;
+      padding-left: $alert-icon-font-size + em;
       cursor:       default;
+
     }
 
-  }
+    .icon_error-triangle {
 
-  .etmodules {
+      margin: 10px;
 
-    margin: 10px;
+      &:before {
 
-    &:before {
-
-      font-family: 'ETmodules';
-      padding: 0 0 0 12px;
-      font-weight: 400;
-      font-size: 1.4em;
-      position: absolute;
-      padding: 1px;
+        padding: 1px;
+        font-size:  $alert-icon-font-size + em;
+        content:    "\e063"; /* icon_error-triangle */
+        color:      #FFFFFF;
+      }
     }
   }
-  .icon_error-triangle:before {
-    content: "\e063";; /* icon_error-triangle */
-    color:  #FFFFFF;
+
+  .usc_screenings__title {
+    font-size:      1.6em;
+    color: #666;
   }
 
   .usc_screenings__showtimes,
@@ -124,17 +188,7 @@ $orange-on-hover: #FF8730;
 
     .showtime {
 
-      border: 1px solid #CCC;
-      background-color: #FFF;
-      display: inline-block;
-      margin: 1px;
-      padding: 3px;
-
-      &:hover {
-
-        border: 1px solid #AAAAAA;
-        cursor: default;
-      }
+      @include usc_screening__showtime();
     }
   }
 
@@ -142,32 +196,110 @@ $orange-on-hover: #FF8730;
 
     width: 45%;
 
-    a {
-      color:            #FFF;
-      background-color: #666;
-      text-align:       center;
-      padding:          5px;
-      display:          inline-block;
-      margin-top:       1em;
-      width:            100%;
-      transition:       all 0.2s ease 0s;
-
-      &:hover {
-        background-color: $orange-on-hover;
-      }
-    }
   }
 }
 
-.bd__head .movie_title {
-  font-size:      1.6em;
-  color: #666;
-}
+.type-usc_screenings {
 
-#main-content .container:before {
+  * {
 
-  width:   0px;
-  display: none;
+    box-sizing: border-box;
+  }
+
+  .entry-content div[class^="usc_screenings"] {
+
+    margin-bottom: 1em;
+  }
+
+  .subhead {
+
+    font-size:    0.9em;
+    font-weight:  700;
+    font-style:   italic;
+  }
+
+  .usc_screenings__title {
+
+    font-size: 3em;
+
+    .etmodules {
+      display:  none;
+    }
+
+    &.now_playing {
+      padding-left: $title-icon-font-size + em;
+
+      .etmodules {
+        display:  inline;
+      }
+
+      .arrow_triangle-right_alt:before {
+        margin-top:   -($title-icon-font-size * .2) + em;
+        font-size:    $title-icon-font-size + em;
+        margin-left:  -($title-icon-font-size * 1.1 ) + em;
+        content:      "\49"; /* icon_error-triangle */
+      }
+    }
+  }
+
+  .usc_screenings__showtimes {
+
+    padding-bottom: 1em;
+    border-bottom: 1px dotted #CCC;
+
+    h2 { margin: 0; }
+
+    /* So that we can simulate same-sized columns
+    http://jsfiddle.net/kaAjW/2871/ */
+    overflow: hidden;
+
+    .showtimes__dates {
+      display: inline-block;
+      width: 100%;
+
+    }
+
+    .showtimes__dates--left,
+    .showtimes__dates--right {
+
+      width: 50%;
+      float: left;
+
+      /* Arbitrarily large values so that we can set a background color. */
+      padding-bottom: 1000px;
+      margin-bottom: -1000px;
+    }
+
+    .showtimes__dates--playing {
+
+      background-color: #F2F2F2;
+    }
+
+    .showtimes__hours {
+
+      padding-bottom: .1em;
+
+      .showtime {
+
+        @include usc_screening__showtime(3px 8px);
+
+        &:hover + .showtime__end {
+          color: #444;
+        }
+      }
+
+      .showtime__end {
+
+        font-size: 0.9em;
+        color: #AAA;
+      }
+    }
+
+
+
+  }
+
+
 }
 
 
@@ -175,7 +307,7 @@ $orange-on-hover: #FF8730;
 
   .usc_screenings-shortcode {
 
-    .bd__head .movie_title {
+    .usc_screenings__title {
       font-size:      2em;
     }
 
@@ -215,7 +347,7 @@ $orange-on-hover: #FF8730;
 
   .usc_screenings-shortcode {
 
-    .bd__head .movie_title {
+    .usc_screenings__title {
       font-size:      2.6em;
     }
 
@@ -238,4 +370,5 @@ $orange-on-hover: #FF8730;
     }
   }
 }
+
 
