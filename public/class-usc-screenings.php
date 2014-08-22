@@ -55,6 +55,8 @@ class USC_Screenings {
 
     protected $usc_screenings_dir = null;
 
+    protected $server_timezone = null;
+
     /**
      * Initialize the plugin by setting localization and loading public scripts
      * and styles.
@@ -93,6 +95,18 @@ class USC_Screenings {
         add_filter( 'body_class', array( $this, 'usc_screenings_body_classes'), 100 );
 
         /* #main-content .container:before */
+    }
+
+    public function set_current_timezone() {
+
+        $this->server_timezone = date_default_timezone_get();
+
+        date_default_timezone_set("America/Toronto");
+    }
+
+    public function reset_timezone() {
+
+        date_default_timezone_set( $this->server_timezone );
     }
 
     /**
@@ -228,33 +242,80 @@ class USC_Screenings {
     }
 
     /**
+     * Check if a movie is playing this week.  Basically, it is if it's the date of its first screening,
+     * the date of its final screening, or sometime in between.
+     *
+     * @since   0.8.1
+     *
+     * @param $start_date   the start_date of a screening
+     * @param $end_date     the end date of a screening
+     * @return bool         true if the current time falls on or between either day.  Else, false.
+     */
+    public function is_playing_this_week( $start_date, $end_date ) {
+
+        if( empty($start_date) || empty($end_date) )
+            return false;
+
+        $this->set_current_timezone();
+
+        $start_date_timestamp = strtotime($start_date);
+        $end_date_timestamp   = strtotime($end_date . "+23 hours"); //because if a movie ends today, it ends at the END of the day
+        $now = time();
+
+        $this->reset_timezone();
+
+        return ($start_date_timestamp < $now && $end_date_timestamp > $now);
+    }
+
+    /**
      * Feed in a start_date and end_date and return the string we would like for the HTML.
      * If the months are the same, just use the second date (ie, "August 3 - 10")
      *
-     * The logic before this method ensures that there will always be a start and end date.
+     * Makes accommodations in case there is no start or end date (or either) input
      *
-     * @since    0.7.0
+     * @since    0.8.1
      *
      * @param $start_date   the start date of our screening
      * @param $end_date     the final date of our screening
      * @return string       a formatted date-range string
      */
-    private function return_date_range_string( $start_date, $end_date ) {
+    public function return_date_range_string( $start_date, $end_date ) {
 
-        $date_string = '';
+        $start_month = $end_month = $date_string = '';
+
+        if( empty( $start_date ) && empty( $end_date ) )
+            return false;
+
+        $this->set_current_timezone();
 
         $start_date_timestamp = strtotime($start_date);
         $end_date_timestamp   = strtotime($end_date);
 
-        //get the months
-        $start_month    = date('F', $start_date_timestamp);
-        $end_month      = date('F', $end_date_timestamp);
+        $this->reset_timezone();
 
-        //get the days
-        $start_day      = date('j', $start_date_timestamp);
-        $end_day        = date('j', $end_date_timestamp);
 
-        $date_string =         $start_month . ' ' . $start_day . ' - ';
+        if( false !== $start_date_timestamp ) {
+
+            $start_month    = date('F', $start_date_timestamp);
+            $start_day      = date('j', $start_date_timestamp);
+        }
+        if( false !== $end_date_timestamp ) {
+
+            $end_month    = date('F', $end_date_timestamp);
+            $end_day      = date('j', $end_date_timestamp);
+        }
+
+        if( empty( $start_month ) && empty( $end_month ) )
+            return '';
+
+        if( empty( $start_month ) )
+            return "Ending on " . $end_month . " " . $end_day;
+
+        if( empty( $end_month ) )
+            return "Starting on " . $start_month . " " . $start_day;
+
+
+        $date_string =         'Playing: ' . $start_month . ' ' . $start_day . ' - ';
         //if the months are the same, then just return the end date.
         $date_string .=         ( $start_month === $end_month ) ? $end_day : $end_month . ' ' . $end_day;
 
@@ -292,17 +353,75 @@ class USC_Screenings {
     }
 
     /**
+     * Creates the HTMl for the showtimes section of a single screenings page.
+     *
+     * @since   0.8.1
+     *
+     * @param $showtimes_repeatable an array of showtimes ("07:30 pm", etc)
+     * @param $duration             the length of the movie in minutes ("162 mins")
+     * @return string               the HTML for listing the movie times
+     */
+    public function generate_usc_screenings_single_showtimes_HTML($showtimes_repeatable, $duration) {
+
+        //this will be overwritten if the array of showtimes is not empty
+        $html_string = '<p>No showtimes have been settled upon yet.</p>';
+
+        //if empty, print some message.
+        if( !empty( $showtimes_repeatable )) {
+
+            $html_string = '';
+
+            while( !empty( $showtimes_repeatable ) ) {
+
+                $showtime = array_shift( $showtimes_repeatable );
+
+                $html_string .= '<p class="showtimes__hours"><span class="showtime">' . $showtime . '</span>';
+
+                if( !empty( $duration ) )
+                    $html_string .= ' <span class="showtime__end"> (ends at '
+                        . $this->calculate_time_interval( $showtime, $duration ) . ')</span>';
+
+                $html_string .= '</p>';
+            } //end of the while loop
+            unset( $showtime );
+
+        }
+
+        return $html_string;
+    }
+
+
+    /**
+     * I flatter myself that this one should be pretty easily guessed.
+     * Pass in a show time and the movie duration (in minutes) and watch as the end-time is calculated.
+     *
+     * @since   0.8.1
+     *
+     * @param $showtime the time (07:33 pm or similar) of a film screening
+     * @param $duration the duration in minutes of the screening
+     * @return string   the time when the movie ends.
+     */
+    public function calculate_time_interval( $showtime, $duration ) {
+
+        $minutes = intval( $duration );
+
+        $time = new DateTime( $showtime );
+        $time->add(new DateInterval('PT' . $minutes . 'M'));
+
+        return $time->format('h:i a');
+    }
+
+    /**
      * Very similar to the last one, except here we also get an array of days.
-     * If the array of days is empty, no showtimes.
-     * Else, return the days as the subheading for our showtimes.
+     * If the array of days is empty, no showtimes, return an empty string.
+     * Else, return a string with the days that the alternative showtimes apply
      *
      * @since    0.8.0
      *
      * @param $days_array       an array of days for this screening
-     * @param $showtimes_array  an array of showtimes for a screening
      * @return string           a formatted string of all of the showtimes prepended by the number of days.
      */
-    private function return_alternate_showtimes_date_string( $days_array, $showtimes_array ) {
+    public function return_alternate_showtimes_date_string( $days_array ) {
 
         $showtimes_string = '';
 
@@ -325,11 +444,13 @@ class USC_Screenings {
             $showtimes_string .= ( !empty( $showtimes_string ) ) ? ' & ' . $last_day : $last_day;
         }
 
-        $showtimes_string = '<span class="subhead">' . ucwords( $showtimes_string ) . ':</span>'
-            . $this->return_showtimes_string( $showtimes_array );
+        //@TODO: DELETE THIS AS SOON AS POSSIBLE
+        /*$showtimes_string = ucwords( $showtimes_string ) . ':</span>'
+            . $this->return_showtimes_string( $showtimes_array );*/
+
+        $showtimes_string = ucwords( $showtimes_string );
 
         return $showtimes_string;
-
     }
 
 

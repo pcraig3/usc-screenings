@@ -15,8 +15,8 @@ ob_start();
     <?php
 
     if( '' !== ( $alert = get_post_meta( $post->ID, 'alert', true ) ) )  { ?>
-        <div class="usc_screenings__alert"><span class="etmodules icon_error-triangle usc_screenings__alert__icon"></span>
-                <p class="usc_screenings__alert__message"><?php echo esc_html( $alert ); ?></p></div>
+        <div class="usc_screenings__alert">
+                <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo esc_html( $alert ); ?></p></div>
 
     <?php  }  ?>
 
@@ -73,7 +73,7 @@ ob_start();
         <p class="showtimes">
         <?php
 
-        if( '' !== ( $alert = get_post_meta( $post->ID, 'showtimes_repeatable', true ) ) ) { ?>
+        if( '' !== get_post_meta( $post->ID, 'showtimes_repeatable', true ) ) { ?>
             <?php echo '<span class="subhead">Nightly:</span>' . $this->return_showtimes_string( get_post_meta( $post->ID, 'showtimes_repeatable', true ) ); ?>
 
         <?php  }  ?>
@@ -83,7 +83,7 @@ ob_start();
         <p class="alternate_showtimes">
             <?php
 
-            if( '' !== ( $alert = get_post_meta( $post->ID, 'if_weekend_showtimes', true ) ) ) { ?>
+            if( '' !== get_post_meta( $post->ID, 'if_weekend_showtimes', true ) ) { ?>
                 <?php echo $this->return_alternate_showtimes_date_string( get_post_meta( $post->ID, 'if_weekend_showtimes', true ), get_post_meta( $post->ID, 'weekend_showtimes_repeatable', true ) ); ?>
 
             <?php  }  ?>

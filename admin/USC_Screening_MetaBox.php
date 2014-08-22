@@ -85,9 +85,9 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'title'	=>	__( 'Alternate Weekend Showtimes?', 'admin-page-framework-demo' ),
                 'type'	=>	'checkbox',
                 'label'	=>	array(
-                    'fri'	=>	__( 'Friday', 'usc-screenings' ),
-                    'sat'	=>	__( 'Saturday', 'usc-screenings' ),
-                    'sun'	=>	__( 'Sunday', 'usc-screenings' ),
+                    'friday'	=>	__( 'Friday', 'usc-screenings' ),
+                    'saturday'	=>	__( 'Saturday', 'usc-screenings' ),
+                    'sunday'	=>	__( 'Sunday', 'usc-screenings' ),
                 ),
                 'default'	=>	array(
                     'fri'	=>	false,

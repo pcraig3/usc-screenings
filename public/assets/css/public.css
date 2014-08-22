@@ -25,11 +25,44 @@
   zoom: 1; }
 
 /* ====== making everything look okay ===== */
-.single-usc_screenings #main-content .container {
-  padding-top: 0; }
-  .single-usc_screenings #main-content .container:before {
-    width: 0px;
-    display: none; }
+/*$alert-color--transparent: rgba(25, 165, 93, .85);*/
+/* 227, 211, 42, 1 */
+#back_to_home {
+  background-color: #EFEFEF !important; }
+  #back_to_home .et_pb_row {
+    padding: 0; }
+    #back_to_home .et_pb_row a.arrow_back {
+      color: #FFF;
+      background-color: #666;
+      text-align: center;
+      padding: 5px;
+      display: inline-block;
+      margin-top: 1em;
+      width: 100%;
+      transition: all 0.2s ease 0s;
+      margin-top: 0;
+      padding: 20px 0 18px 0;
+      color: white;
+      background-color: #222222;
+      font-family: 'bignoodletitlingoblique', Helvetica, Arial, sans-serif;
+      font-size: 2.2em; }
+      #back_to_home .et_pb_row a.arrow_back:hover {
+        background-color: #ff8730; }
+      #back_to_home .et_pb_row a.arrow_back:before {
+        content: "\4a";
+        font-family: 'ETmodules';
+        font-weight: 400;
+        margin-left: -0.55em; }
+
+.single-usc_screenings #main-content {
+  background-color: #FBFBFB; }
+  .single-usc_screenings #main-content .container {
+    padding-top: 0; }
+    .single-usc_screenings #main-content .container:before {
+      width: 0px;
+      display: none; }
+  .single-usc_screenings #main-content .et_pb_section {
+    background-color: #FBFBFB; }
 
 .usc_screenings-shortcode .etmodules:before,
 .type-usc_screenings .etmodules:before {
@@ -49,6 +82,29 @@
   .usc_screenings-shortcode .usc_screenings__link:hover,
   .type-usc_screenings .usc_screenings__link:hover {
     background-color: #ff8730; }
+.usc_screenings-shortcode .usc_screenings__alert,
+.type-usc_screenings .usc_screenings__alert {
+  box-sizing: border-box;
+  color: #ffffff;
+  background-color: #f8e622;
+  position: relative;
+  margin-bottom: 1em;
+  font-size: 1.3em; }
+  .usc_screenings-shortcode .usc_screenings__alert:hover,
+  .type-usc_screenings .usc_screenings__alert:hover {
+    background-color: rgba(248, 230, 34, 0.8); }
+  .usc_screenings-shortcode .usc_screenings__alert .usc_screenings__alert__message,
+  .type-usc_screenings .usc_screenings__alert .usc_screenings__alert__message {
+    display: inline-block;
+    cursor: default;
+    padding-left: 2.4em; }
+  .usc_screenings-shortcode .usc_screenings__alert .icon_error-triangle:before,
+  .type-usc_screenings .usc_screenings__alert .icon_error-triangle:before {
+    font-size: 1.2em;
+    margin-left: -1.44em;
+    content: "\e063";
+    /* icon_error-triangle */
+    color: #FFFFFF; }
 
 .usc_screenings-shortcode {
   position: relative;
@@ -63,27 +119,6 @@
   .usc_screenings-shortcode .usc_screenings__content p,
   .usc_screenings-shortcode .usc_screenings__content p:last-of-type {
     padding-bottom: .45em !important; }
-  .usc_screenings-shortcode .usc_screenings__alert {
-    box-sizing: border-box;
-    padding: 5px 5px 5px 0;
-    color: #ffffff;
-    background-color: #19a55d;
-    position: relative;
-    margin-bottom: 1em; }
-    .usc_screenings-shortcode .usc_screenings__alert:hover {
-      background-color: rgba(25, 165, 93, 0.85); }
-    .usc_screenings-shortcode .usc_screenings__alert .usc_screenings__alert__message {
-      display: inline-block;
-      padding-left: 1.4em;
-      cursor: default; }
-    .usc_screenings-shortcode .usc_screenings__alert .icon_error-triangle {
-      margin: 10px; }
-      .usc_screenings-shortcode .usc_screenings__alert .icon_error-triangle:before {
-        padding: 1px;
-        font-size: 1.4em;
-        content: "\e063";
-        /* icon_error-triangle */
-        color: #FFFFFF; }
   .usc_screenings-shortcode .usc_screenings__title {
     font-size: 1.6em;
     color: #666; }
@@ -133,12 +168,13 @@
     padding-left: 1em; }
     .type-usc_screenings .usc_screenings__title.now_playing .etmodules {
       display: inline; }
-    .type-usc_screenings .usc_screenings__title.now_playing .arrow_triangle-right_alt:before {
-      margin-top: -0.2em;
+    .type-usc_screenings .usc_screenings__title.now_playing .icon_box-checked:before {
+      margin-top: -0.125em;
       font-size: 1em;
       margin-left: -1.1em;
-      content: "\49";
-      /* icon_error-triangle */ }
+      content: "\5a";
+      /* icon_check_alt2 */
+      color: #19a55d; }
 .type-usc_screenings .usc_screenings__showtimes {
   padding-bottom: 1em;
   border-bottom: 1px dotted #CCC;
