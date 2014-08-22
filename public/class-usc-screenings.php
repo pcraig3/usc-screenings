@@ -230,7 +230,7 @@ class USC_Screenings {
                 //don't show the movie if there's no start date
                 if( !empty( $start_date ) ) {
 
-                    $html_string .= require('views/usc_screenings-shortcode.php');
+                    $html_string .= require('views/shortcode-usc_screenings.php');
                 }
             }
 
@@ -333,7 +333,7 @@ class USC_Screenings {
      * @param $showtimes_array  an array of showtimes for this screening
      * @return string           a formatted string of all of the showtimes
      */
-    private function return_showtimes_string( $showtimes_array ) {
+    public function generate_usc_screenings_shortcode_showtimes_HTML( $showtimes_array ) {
 
         $showtimes_string = '';
 
@@ -419,9 +419,10 @@ class USC_Screenings {
      * @since    0.8.0
      *
      * @param $days_array       an array of days for this screening
+     * @param int $substr_length    an integer, if set, we cut down the individual day strings to this length
      * @return string           a formatted string of all of the showtimes prepended by the number of days.
      */
-    public function return_alternate_showtimes_date_string( $days_array ) {
+    public function return_alternate_showtimes_date_string( $days_array, $substr_length = 0 ) {
 
         $showtimes_string = '';
 
@@ -436,6 +437,11 @@ class USC_Screenings {
         else {
 
             $days_array = array_keys( $days_array );
+
+            //cut down the size of the string only if $substr_length is not zero.
+            if( 0 !== $substr_length )
+                foreach($days_array as &$day)
+                    $day = substr($day, 0, $substr_length);
 
             $last_day = array_pop( $days_array );
 

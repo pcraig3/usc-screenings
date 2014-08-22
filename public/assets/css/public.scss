@@ -118,7 +118,7 @@ $title-icon-font-size: 1;
   }
 }
 
-.usc_screenings-shortcode,
+.shortcode-usc_screenings,
 .type-usc_screenings {
 
   .etmodules:before {
@@ -171,7 +171,7 @@ $title-icon-font-size: 1;
 
 
 
-.usc_screenings-shortcode {
+.shortcode-usc_screenings {
 
   position:       relative;
   padding-top:    20px;
@@ -372,7 +372,7 @@ $title-icon-font-size: 1;
 
 @media screen and (max-width: 767px) {
 
-  .usc_screenings-shortcode {
+  .shortcode-usc_screenings {
 
     .usc_screenings__title {
       font-size:      2em;
@@ -426,7 +426,7 @@ $title-icon-font-size: 1;
     padding: 10px 12px;
   }
 
-  .usc_screenings-shortcode {
+  .shortcode-usc_screenings {
 
     .usc_screenings__title {
       font-size:      2.6em;
