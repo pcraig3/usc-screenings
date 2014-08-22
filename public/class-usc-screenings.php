@@ -355,7 +355,7 @@ class USC_Screenings {
     /**
      * Creates the HTMl for the showtimes section of a single screenings page.
      *
-     * @since   0.8.1
+     * @since   0.8.2
      *
      * @param $showtimes_repeatable an array of showtimes ("07:30 pm", etc)
      * @param $duration             the length of the movie in minutes ("162 mins")
@@ -415,8 +415,9 @@ class USC_Screenings {
      * Very similar to the last one, except here we also get an array of days.
      * If the array of days is empty, no showtimes, return an empty string.
      * Else, return a string with the days that the alternative showtimes apply
+     * New!  Option to cut the day strings to a certain length (like 3, right?)
      *
-     * @since    0.8.0
+     * @since    0.9.0
      *
      * @param $days_array       an array of days for this screening
      * @param int $substr_length    an integer, if set, we cut down the individual day strings to this length

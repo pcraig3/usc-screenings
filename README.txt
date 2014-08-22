@@ -4,7 +4,7 @@ Donate link: http://example.com/
 Tags: comments, spam
 Requires at least: 3.5.1
 Tested up to: 3.6
-Stable tag: 0.8.1
+Stable tag: 0.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,12 @@ No.  Maybe once we're at August 22nd.
 
 
 == Changelog ==
+
+= 0.9.0 =
+* Yes!  Single page in both mobile and desktop versions working.
+* Shortcode listing working for both mobile and desktop as well.
+* Most if not all of the empty strings/arrays checked for.
+* Fields that James asked for working great.
 
 = 0.8.1 =
 * Bloody finally got my single movies page worked out
