@@ -16,8 +16,8 @@
 }
 
 /* ====== making everything look okay ===== */
-$alert-color: rgb(248, 230, 34);
-$alert-color--transparent: rgba(248, 230, 34, .8);
+$alert-color: rgb(46, 163, 242);
+$alert-color--transparent: rgba(46, 163, 242, .8);
 
 $now-playing-green: rgb(25, 165, 93);
 /*$alert-color--transparent: rgba(25, 165, 93, .85);*/
@@ -189,17 +189,23 @@ $title-icon-font-size: 1;
     box-sizing: border-box;
   }
 
-  .usc_screenings__content p,
-  .usc_screenings__content p:last-of-type {
+  .bd p,
+  .bd p:last-of-type {
 
     padding-bottom: .45em !important;
+    line-height:    1.5em;
   }
 
-
-
   .usc_screenings__title {
+
     font-size:      1.6em;
-    color: #666;
+    color:          #666;
+    transition:       all 0.2s ease 0s;
+
+    &:hover {
+
+      color: $orange-on-hover;
+    }
   }
 
   .usc_screenings__showtimes,
@@ -227,13 +233,15 @@ $title-icon-font-size: 1;
 
     .dates {
 
-      font-weight: 700;
-      font-style: italic;
-      padding: .8em 0;
+      font-weight:  700;
+      font-style:   italic;
+      padding:      .8em 0;
+      font-size:    1.1em;
     }
 
     .subhead {
 
+      min-width: 115px;
       font-weight: 400;
     }
 
@@ -245,7 +253,10 @@ $title-icon-font-size: 1;
 
   .usc_screenings__links {
 
-    width: 45%;
+    width:    45%;
+    position: absolute;
+    bottom:   0;
+    right:    0;
 
   }
 }

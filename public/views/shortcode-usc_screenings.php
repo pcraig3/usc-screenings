@@ -16,22 +16,22 @@ ob_start();
 
     if( '' !== ( $alert = esc_html( get_post_meta( $post->ID, 'alert', true ) ) ) ) { ?>
         <div class="usc_screenings__alert">
-                <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo $alert; ?></p>
+            <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo $alert; ?></p>
         </div><!-- end of .usc_screenings__alert -->
 
     <?php  }  ?>
-
 
     <div class="media usc_screenings__content">
         <a href="<?php echo get_permalink(); ?>" class="img usc_screenings__img">
             <?php echo get_the_post_thumbnail( $post->ID, 'thumbnail' ); ?>
         </a><!-- end of .usc_screenings__img -->
 
-
         <div class="bd">
-            <a href="<?php echo get_permalink(); ?><div class="usc_screenings__title">
-                <h2 class="movie_title"><?php echo get_the_title(); //there is ALWAYS a title. ?></h2>
-            </div><!-- end .usc_screenings__title --></a>
+            <a href="<?php echo get_permalink(); ?>">
+                <div class="usc_screenings__title">
+                    <h2 class="movie_title"><?php echo get_the_title(); //there is ALWAYS a title. ?></h2>
+                </div><!-- end .usc_screenings__title -->
+            </a>
 
             <div class="usc_screenings__excerpt">
                 <p><?php echo get_the_excerpt(); //we are assuming that there will either be an excerpt or description. ?>
@@ -68,53 +68,51 @@ ob_start();
 
     </div><!-- end .media -->
 
+
     <div class="usc_screenings__showtimes">
-            <?php
+        <?php
 
-            $date_string = esc_html( USC_Screenings::get_instance()
-                    ->return_date_range_string( $start_date, get_post_meta( $post->ID, 'end_date', true ) ) );
+        $date_string = esc_html( USC_Screenings::get_instance()
+            ->return_date_range_string( $start_date, get_post_meta( $post->ID, 'end_date', true ) ) );
 
-            if( empty( $date_string )) {
+        if( empty( $date_string )) {
 
-                echo '<p class="dates">Not sure when this will be playing.</p>';
-            }
-            else {
+            echo '<p class="dates">Not sure when this will be playing.</p>';
+        }
+        else {
 
-            echo '<p class="dates">';
-            echo $date_string;
-            echo '</p>';
+            echo '<p class="dates">' . $date_string . '</p>';
 
             ?>
 
 
-        <p class="showtimes">
-        <?php
-
-        if( '' !== get_post_meta( $post->ID, 'showtimes_repeatable', true ) ) { ?>
-            <?php echo '<span class="subhead">Reg. Showtimes:</span>' . USC_Screenings::get_instance()
-                    ->generate_usc_screenings_shortcode_showtimes_HTML( get_post_meta( $post->ID, 'showtimes_repeatable', true ) ); ?>
-
-        <?php  }  ?>
-        </p>
-
+            <p class="showtimes">
                 <?php
 
-                //returns empty string if dates array is empty
-                $alternative_showtimes_dates = USC_Screenings::get_instance()->return_alternate_showtimes_date_string( get_post_meta( $post->ID, 'if_weekend_showtimes', true ) );
-                $weekend_showtimes_repeatable = array_filter(get_post_meta( $post->ID, 'weekend_showtimes_repeatable', true ));
+                if( '' !== get_post_meta( $post->ID, 'showtimes_repeatable', true ) ) { ?>
+                    <?php echo '<span class="subhead">Reg. Showtimes:</span>' . USC_Screenings::get_instance()
+                            ->generate_usc_screenings_shortcode_showtimes_HTML( get_post_meta( $post->ID, 'showtimes_repeatable', true ) ); ?>
 
-                if( !empty( $alternative_showtimes_dates ) && !empty( $weekend_showtimes_repeatable ) ) {
+                <?php  }  ?>
+            </p>
+
+            <?php
+
+            //returns empty string if dates array is empty
+            $alternative_showtimes_dates = USC_Screenings::get_instance()->return_alternate_showtimes_date_string( get_post_meta( $post->ID, 'if_weekend_showtimes', true ), 3 );
+            $weekend_showtimes_repeatable = array_filter(get_post_meta( $post->ID, 'weekend_showtimes_repeatable', true ));
+
+            if( !empty( $alternative_showtimes_dates ) && !empty( $weekend_showtimes_repeatable ) ) {
                 ?>
-                    <p class="alternate_showtimes">
-                    <span class="subhead"><?php echo $alternative_showtimes_dates; ?>: </span>
-                        <?php echo USC_Screenings::get_instance()
+                <p class="alternate_showtimes">
+                    <span class="subhead"><?php echo $alternative_showtimes_dates; ?>:</span><?php echo USC_Screenings::get_instance()
                         ->generate_usc_screenings_shortcode_showtimes_HTML( $weekend_showtimes_repeatable ); ?>
-                    </p>
+                </p>
 
-                    <?php
-                }  ?>
+            <?php
+            }  ?>
 
-<?php  } //end of $date_string else statement ?>
+        <?php  } //end of $date_string else statement ?>
 
     </div><!-- end .usc_screenings__showtimes -->
 
@@ -145,7 +143,10 @@ ob_start();
     </div><!-- end .usc_screening__links -->
 
 
+
 </div><!-- end of .usc_screening-shortcode -->
+
+
 
 <?php
 

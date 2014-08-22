@@ -88,13 +88,13 @@
 .type-usc_screenings .usc_screenings__alert {
   box-sizing: border-box;
   color: #ffffff;
-  background-color: #f8e622;
+  background-color: #2ea3f2;
   position: relative;
   margin-bottom: 1em;
   font-size: 1.3em; }
   .shortcode-usc_screenings .usc_screenings__alert:hover,
   .type-usc_screenings .usc_screenings__alert:hover {
-    background-color: rgba(248, 230, 34, 0.8); }
+    background-color: rgba(46, 163, 242, 0.8); }
   .shortcode-usc_screenings .usc_screenings__alert .usc_screenings__alert__message,
   .type-usc_screenings .usc_screenings__alert .usc_screenings__alert__message {
     display: inline-block;
@@ -118,12 +118,16 @@
     border-top: none; }
   .shortcode-usc_screenings * {
     box-sizing: border-box; }
-  .shortcode-usc_screenings .usc_screenings__content p,
-  .shortcode-usc_screenings .usc_screenings__content p:last-of-type {
-    padding-bottom: .45em !important; }
+  .shortcode-usc_screenings .bd p,
+  .shortcode-usc_screenings .bd p:last-of-type {
+    padding-bottom: .45em !important;
+    line-height: 1.5em; }
   .shortcode-usc_screenings .usc_screenings__title {
     font-size: 1.6em;
-    color: #666; }
+    color: #666;
+    transition: all 0.2s ease 0s; }
+    .shortcode-usc_screenings .usc_screenings__title:hover {
+      color: #ff8730; }
   .shortcode-usc_screenings .usc_screenings__showtimes,
   .shortcode-usc_screenings .usc_screenings__links {
     float: left; }
@@ -139,8 +143,10 @@
     .shortcode-usc_screenings .usc_screenings__showtimes .dates {
       font-weight: 700;
       font-style: italic;
-      padding: .8em 0; }
+      padding: .8em 0;
+      font-size: 1.1em; }
     .shortcode-usc_screenings .usc_screenings__showtimes .subhead {
+      min-width: 115px;
       font-weight: 400; }
     .shortcode-usc_screenings .usc_screenings__showtimes .showtime {
       border: 1px solid #CCC;
@@ -152,7 +158,10 @@
         border: 1px solid #AAAAAA;
         cursor: default; }
   .shortcode-usc_screenings .usc_screenings__links {
-    width: 45%; }
+    width: 45%;
+    position: absolute;
+    bottom: 0;
+    right: 0; }
 
 .type-usc_screenings * {
   box-sizing: border-box; }

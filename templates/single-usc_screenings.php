@@ -127,7 +127,7 @@ get_header(); ?>
 
             <!-- in here we put the title and all the content-->
             <h1 class="usc_screenings__title <?php echo ($is_playing_this_week) ? 'now_playing' : ''; ?>">
-                <span title="The Past is playing at Western Film this week!" class="etmodules icon_box-checked usc_screenings__title__icon"></span>
+                <span title="<?php the_title(); ?> is playing at Western Film this week!" class="etmodules icon_box-checked usc_screenings__title__icon"></span>
                 <?php the_title(); ?>
             </h1><!-- end of .usc_screenings__title -->
             <? /* Pretty sure we don't need this: et_divi_post_meta(); */ ?>
