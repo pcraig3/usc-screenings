@@ -82,6 +82,7 @@ get_header(); ?>
 
             if( !empty( $official_site_link ) ) { ?>
                 <a class="usc_screenings__link" href="<?php echo  $official_site_link; ?>" alt="link to official site" target="_blank">Official Site</a>
+                <!-- end of .usc_screenings__official_site_link-->
 
             <?php
 
@@ -91,11 +92,12 @@ get_header(); ?>
             $video_url = esc_url( get_post_meta( $post->ID, 'trailer_link', true ) );
             if(!empty($video_url)) {
 
-                echo '<h2>Trailer</h2>';
+                echo '<div class="usc_screenings__trailer_link"><h2>Trailer</h2>';
 
                 $shortcode = '[embed]'.$video_url.'[/embed]';
                 global $wp_embed;
                 echo $wp_embed->run_shortcode($shortcode);
+                echo '</div><!-- end of .usc_screenings__trailer_link-->';
             }
 
             ?>
@@ -108,7 +110,8 @@ get_header(); ?>
 
             if( '' !== ( $alert = get_post_meta( $post->ID, 'alert', true ) ) )  { ?>
             <div class="usc_screenings__alert">
-                <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo esc_html( $alert ); ?></p></div>
+                <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo esc_html( $alert ); ?></p>
+            </div><!-- end of .usc_screenings__alert -->
 
             <?php  }  ?>
 
@@ -126,7 +129,7 @@ get_header(); ?>
             <h1 class="usc_screenings__title <?php echo ($is_playing_this_week) ? 'now_playing' : ''; ?>">
                 <span title="The Past is playing at Western Film this week!" class="etmodules icon_box-checked usc_screenings__title__icon"></span>
                 <?php the_title(); ?>
-            </h1>
+            </h1><!-- end of .usc_screenings__title -->
             <? /* Pretty sure we don't need this: et_divi_post_meta(); */ ?>
 
             <div class="entry-content">
@@ -200,7 +203,7 @@ get_header(); ?>
                     ?>
 
                     <?php } //this is the end of the dates section ?>
-                </div>
+                </div><!-- end of .usc_screenings__showtimes -->
 
                 <?php
                 if( '' !== ( $genre = esc_html( get_post_meta( $post->ID, 'genre', true ) ) ) ) { ?>
@@ -209,7 +212,7 @@ get_header(); ?>
                         <p>
                             <?php echo esc_html( ucwords( $genre ) ); ?>
                         </p>
-                    </div>
+                    </div><!-- end of .usc_screenings__genre -->
 
                 <?php  }  ?>
 
@@ -220,7 +223,7 @@ get_header(); ?>
                     the_content();
                     //echo ob_get_clean();
                     ?>
-                </div>
+                </div><!-- end of .usc_screenings__synopsis -->
 
                 <?php
                 if( '' !== ( $rating = esc_html( get_post_meta( $post->ID, 'rating', true ) ) ) )  { ?>
@@ -229,7 +232,7 @@ get_header(); ?>
                         <p>
                             <?php echo strtoupper( $rating ); ?>
                         </p>
-                    </div>
+                    </div><!-- end of .usc_screenings__rating -->
 
                 <?php  }  ?>
 
@@ -253,7 +256,7 @@ get_header(); ?>
                         <p>
                             <?php echo $html_string; ?>
                         </p>
-                    </div>
+                    </div><!-- end of .usc_screenings__content_advisories -->
 
                 <?php  }
 

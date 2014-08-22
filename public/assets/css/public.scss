@@ -69,6 +69,12 @@ $title-icon-font-size: 1;
 
     padding: 0;
 
+
+    .et_pb_column {
+
+      padding-bottom: 0;
+    }
+
     a.arrow_back {
 
       @include  usc_screening__button();
@@ -263,6 +269,11 @@ $title-icon-font-size: 1;
     font-style:   italic;
   }
 
+  .usc_screenings__trailer_link {
+
+    margin-top: 2.4em;
+  }
+
   .usc_screenings__title {
 
     font-size: 3em;
@@ -348,6 +359,16 @@ $title-icon-font-size: 1;
 
 }
 
+@media screen and (max-width: 979px) {
+
+  .type-usc_screenings {
+
+    .et_pb_column:first-of-type {
+
+      display:none;
+    }
+  }
+}
 
 @media screen and (max-width: 767px) {
 
@@ -382,6 +403,20 @@ $title-icon-font-size: 1;
       }
     }
   }
+
+
+  .type-usc_screenings {
+
+    .entry-content {
+
+      padding-top: 20px;
+
+      .usc_screenings__showtimes h2 {
+
+        font-size: 2.2em;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -412,6 +447,20 @@ $title-icon-font-size: 1;
       .subhead {
 
         width: 100%;
+      }
+    }
+  }
+
+  .type-usc_screenings {
+
+    .usc_screenings__showtimes {
+
+      .showtimes__dates--left,
+      .showtimes__dates--right {
+
+        width: 100%;
+        padding-top: 1.6em;
+
       }
     }
   }
