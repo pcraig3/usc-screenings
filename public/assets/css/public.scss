@@ -385,7 +385,7 @@ $title-icon-font-size: 1;
 
   .shortcode-usc_screenings {
 
-    .usc_screenings__title {
+    .usc_screenings__title h2 {
       font-size:      2em;
     }
 
@@ -394,10 +394,11 @@ $title-icon-font-size: 1;
 
       display: none;
 
-      &.rating {
+      &.usc_screenings__rating {
 
         display: block;
-        font-size: 1.2em;
+        font-size: 1.1em;
+        padding-bottom: 1em !important;
       }
 
     }
@@ -406,11 +407,22 @@ $title-icon-font-size: 1;
     .usc_screenings__links {
 
       width: 100%;
+      position: relative;
 
       .dates {
 
         font-size:  1.2em;
         padding:    0 0 .8em 0;
+      }
+
+      .subhead {
+
+        min-width: 50%;
+      }
+
+      .subhead, .showtime {
+
+        font-size: 1.1em;
       }
     }
   }
@@ -439,8 +451,8 @@ $title-icon-font-size: 1;
 
   .shortcode-usc_screenings {
 
-    .usc_screenings__title {
-      font-size:      2.6em;
+    .usc_screenings__title h2 {
+      font-size:      1.8em;
     }
 
     .etmodules {
@@ -452,12 +464,13 @@ $title-icon-font-size: 1;
 
       p {
 
-        padding-bottom: 1em;
+        padding-bottom: .8em;
       }
 
       .subhead {
 
         width: 100%;
+        padding-bottom: .4em;
       }
     }
   }

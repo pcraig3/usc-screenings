@@ -229,22 +229,31 @@
   .type-usc_screenings .et_pb_column:first-of-type {
     display: none; } }
 @media screen and (max-width: 767px) {
-  .shortcode-usc_screenings .usc_screenings__title {
+  .shortcode-usc_screenings .usc_screenings__title h2 {
     font-size: 2em; }
   .shortcode-usc_screenings .media .img,
   .shortcode-usc_screenings .bd p {
     display: none; }
-    .shortcode-usc_screenings .media .img.rating,
-    .shortcode-usc_screenings .bd p.rating {
+    .shortcode-usc_screenings .media .img.usc_screenings__rating,
+    .shortcode-usc_screenings .bd p.usc_screenings__rating {
       display: block;
-      font-size: 1.2em; }
+      font-size: 1.1em;
+      padding-bottom: 1em !important; }
   .shortcode-usc_screenings .usc_screenings__showtimes,
   .shortcode-usc_screenings .usc_screenings__links {
-    width: 100%; }
+    width: 100%;
+    position: relative; }
     .shortcode-usc_screenings .usc_screenings__showtimes .dates,
     .shortcode-usc_screenings .usc_screenings__links .dates {
       font-size: 1.2em;
       padding: 0 0 .8em 0; }
+    .shortcode-usc_screenings .usc_screenings__showtimes .subhead,
+    .shortcode-usc_screenings .usc_screenings__links .subhead {
+      min-width: 50%; }
+    .shortcode-usc_screenings .usc_screenings__showtimes .subhead, .shortcode-usc_screenings .usc_screenings__showtimes .showtime,
+    .shortcode-usc_screenings .usc_screenings__links .subhead,
+    .shortcode-usc_screenings .usc_screenings__links .showtime {
+      font-size: 1.1em; }
 
   .type-usc_screenings .entry-content {
     padding-top: 20px; }
@@ -254,14 +263,15 @@
   .et_pb_all_tabs {
     padding: 10px 12px; }
 
-  .shortcode-usc_screenings .usc_screenings__title {
-    font-size: 2.6em; }
+  .shortcode-usc_screenings .usc_screenings__title h2 {
+    font-size: 1.8em; }
   .shortcode-usc_screenings .etmodules {
     display: none; }
   .shortcode-usc_screenings .usc_screenings__showtimes p {
-    padding-bottom: 1em; }
+    padding-bottom: .8em; }
   .shortcode-usc_screenings .usc_screenings__showtimes .subhead {
-    width: 100%; }
+    width: 100%;
+    padding-bottom: .4em; }
 
   .type-usc_screenings .usc_screenings__showtimes .showtimes__dates--left,
   .type-usc_screenings .usc_screenings__showtimes .showtimes__dates--right {
