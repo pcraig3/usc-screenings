@@ -43,7 +43,7 @@ get_header(); ?>
             </div> <!-- .et_pb_column -->
         </div> <!-- .et_pb_row -->
 
-    </div>
+    </div><!-- #back_to_home -->
 
 
 

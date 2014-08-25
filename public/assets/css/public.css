@@ -260,7 +260,7 @@
     .type-usc_screenings .entry-content .usc_screenings__showtimes h2 {
       font-size: 2.2em; } }
 @media screen and (max-width: 479px) {
-  .et_pb_all_tabs {
+  #scrn-tabs .et_pb_all_tabs {
     padding: 10px 12px; }
 
   .shortcode-usc_screenings .usc_screenings__title h2 {
