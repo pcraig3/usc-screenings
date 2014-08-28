@@ -370,7 +370,7 @@ $title-icon-font-size: 1;
 
 }
 
-@media screen and (max-width: 979px) {
+@media screen and (max-width: 980px) {
 
   .type-usc_screenings {
 
@@ -381,12 +381,15 @@ $title-icon-font-size: 1;
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
 
   .shortcode-usc_screenings {
 
+    padding-top: 30px;
+
     .usc_screenings__title h2 {
       font-size:      2em;
+      padding-bottom: 0;
     }
 
     .media .img,
@@ -442,7 +445,7 @@ $title-icon-font-size: 1;
   }
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 480px) {
 
   #scrn-tabs .et_pb_all_tabs {
 

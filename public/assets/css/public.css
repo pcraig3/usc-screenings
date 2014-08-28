@@ -225,41 +225,44 @@
       font-size: 0.9em;
       color: #AAA; }
 
-@media screen and (max-width: 979px) {
+@media screen and (max-width: 980px) {
   .type-usc_screenings .et_pb_column:first-of-type {
     display: none; } }
-@media screen and (max-width: 767px) {
-  .shortcode-usc_screenings .usc_screenings__title h2 {
-    font-size: 2em; }
-  .shortcode-usc_screenings .media .img,
-  .shortcode-usc_screenings .bd p {
-    display: none; }
-    .shortcode-usc_screenings .media .img.usc_screenings__rating,
-    .shortcode-usc_screenings .bd p.usc_screenings__rating {
-      display: block;
-      font-size: 1.1em;
-      padding-bottom: 1em !important; }
-  .shortcode-usc_screenings .usc_screenings__showtimes,
-  .shortcode-usc_screenings .usc_screenings__links {
-    width: 100%;
-    position: relative; }
-    .shortcode-usc_screenings .usc_screenings__showtimes .dates,
-    .shortcode-usc_screenings .usc_screenings__links .dates {
-      font-size: 1.2em;
-      padding: 0 0 .8em 0; }
-    .shortcode-usc_screenings .usc_screenings__showtimes .subhead,
-    .shortcode-usc_screenings .usc_screenings__links .subhead {
-      min-width: 50%; }
-    .shortcode-usc_screenings .usc_screenings__showtimes .subhead, .shortcode-usc_screenings .usc_screenings__showtimes .showtime,
-    .shortcode-usc_screenings .usc_screenings__links .subhead,
-    .shortcode-usc_screenings .usc_screenings__links .showtime {
-      font-size: 1.1em; }
+@media screen and (max-width: 768px) {
+  .shortcode-usc_screenings {
+    padding-top: 30px; }
+    .shortcode-usc_screenings .usc_screenings__title h2 {
+      font-size: 2em;
+      padding-bottom: 0; }
+    .shortcode-usc_screenings .media .img,
+    .shortcode-usc_screenings .bd p {
+      display: none; }
+      .shortcode-usc_screenings .media .img.usc_screenings__rating,
+      .shortcode-usc_screenings .bd p.usc_screenings__rating {
+        display: block;
+        font-size: 1.1em;
+        padding-bottom: 1em !important; }
+    .shortcode-usc_screenings .usc_screenings__showtimes,
+    .shortcode-usc_screenings .usc_screenings__links {
+      width: 100%;
+      position: relative; }
+      .shortcode-usc_screenings .usc_screenings__showtimes .dates,
+      .shortcode-usc_screenings .usc_screenings__links .dates {
+        font-size: 1.2em;
+        padding: 0 0 .8em 0; }
+      .shortcode-usc_screenings .usc_screenings__showtimes .subhead,
+      .shortcode-usc_screenings .usc_screenings__links .subhead {
+        min-width: 50%; }
+      .shortcode-usc_screenings .usc_screenings__showtimes .subhead, .shortcode-usc_screenings .usc_screenings__showtimes .showtime,
+      .shortcode-usc_screenings .usc_screenings__links .subhead,
+      .shortcode-usc_screenings .usc_screenings__links .showtime {
+        font-size: 1.1em; }
 
   .type-usc_screenings .entry-content {
     padding-top: 20px; }
     .type-usc_screenings .entry-content .usc_screenings__showtimes h2 {
       font-size: 2.2em; } }
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 480px) {
   #scrn-tabs .et_pb_all_tabs {
     padding: 10px 12px; }
 
