@@ -25,11 +25,11 @@ class USC_Screenings {
     /**
      * Plugin version, used for cache-busting of style and script file references.
      *
-     * @since   0.8.0
+     * @since   1.0.0
      *
      * @var     string
      */
-    const VERSION = '0.8.0';
+    const VERSION = '1.0.0';
 
     /**
      *
@@ -64,7 +64,7 @@ class USC_Screenings {
     /**
      * @var used for saving the default server timezone so that nothing odd happens with our time calculations
      *
-     * @since 0.8.3
+     * @since 1.0.0
      */
     protected $date_default_timezone_get_status = null;
 
@@ -72,7 +72,7 @@ class USC_Screenings {
      * Initialize the plugin by setting localization and loading public scripts
      * and styles.
      *
-     * @since    0.7.0
+     * @since    1.0.0
      */
     private function __construct() {
 
@@ -109,9 +109,24 @@ class USC_Screenings {
 
         //add various classes to the body class in order to square our layout with the Divi Theme's
         add_filter( 'body_class', array( $this, 'usc_screenings_body_classes'), 100 );
+
+        /*
+        * set an initial value to this variable, in case we call the method to overwrite the global value before we
+        * call the method to store it
+        */
+        global $_wp_using_ext_object_cache;
+
+        $this->wp_using_ext_object_cache_status = $_wp_using_ext_object_cache;
+
+        //set a default timezone so that we don't accidentally call the wrong method first and overwrite anything
+        $this->date_default_timezone_get_status = date_default_timezone_get();
     }
 
-
+    /**
+     * function sets the default timezone to America/Toronto because that's where #westernu is.
+     *
+     * @since 1.0.0
+     */
     public function set_server_to_local_time() {
 
         $this->date_default_timezone_get_status = date_default_timezone_get();
@@ -119,6 +134,11 @@ class USC_Screenings {
         date_default_timezone_set("America/Toronto");
     }
 
+    /**
+     * function resets the server timezone back to whatever it was before calling 'set_server_to_local_time'
+     *
+     * @since 1.0.0
+     */
     public function set_server_back_to_default_time() {
 
         date_default_timezone_set( $this->date_default_timezone_get_status );

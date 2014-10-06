@@ -1,10 +1,10 @@
 === USC Screenings ===
 Contributors: pcraig3
-Donate link: http://example.com/
-Tags: comments, spam
-Requires at least: 3.5.1
-Tested up to: 3.6
-Stable tag: 0.9.0
+Donate link: ---
+Tags: usc
+Requires at least: 3.6
+Tested up to: 4.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,26 +13,30 @@ Plugin creates a new 'Screenings' Custom Post Type -- expects the Admin Page Fra
 == Description ==
 
 Plugin creates a new 'Screenings' Custom Post Type -- expects the Admin Page Framework to be included.
-Screenings, if it's ambiguous, are for Western Film.
+Screenings, if it's ambiguous, are meant to be used for Western Film.
 
 List of features we want:
 
 *   Create a Screening in the backend
-*   Screening populates a list of screenings in the front-end
-*   Screening also has its own page
-
-== Installation ==
-
-This section describes how to install the plugin and get it working.
+*   Screening populates a list of screenings on the home page
+*   Define a custom template for a screening
 
 == Frequently Asked Questions ==
 
 = Show me a movie. =
 
-No.  Maybe once we're at August 22nd.
-
+Sure.  http://westernusc.org/westernfilm/
 
 == Changelog ==
+
+= 1.0.0 =
+* Ready enough for launch!
+* Commented pretty well everything pretty comprehensively.
+* Small CSS change to specify home screen tabs rather than all tabs.
+* Small CSS change expands CSS media queries to to match Divi's (i.e., target 480px page widths instead of 479px, etc.).
+* Changed the names of the timezone-setting methods to match other USC_{x} plugins
+* Set initial timezone in the construct method
+* Template file in the theme now (although this isn't really a change made to the plugin)
 
 = 0.9.0 =
 * Yes!  Single page in both mobile and desktop versions working.
