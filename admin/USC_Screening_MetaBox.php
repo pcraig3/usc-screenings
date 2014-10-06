@@ -1,4 +1,12 @@
 <?php
+/**
+ * Class USC_Screening_MetaBox
+ *
+ * This class is later associated with the USCScreening_PostType. (since we're just creating a metabox, we can put it
+ * wherever we like.)
+ *
+ * Anyway, this class defines a bunch of custom fields to associate with the 'usc_screenings' custom post type.
+ */
 class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
 
     /**
@@ -44,8 +52,27 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
      */
     public function setUp() {
 
-        /*
-         * ( optional ) Adds setting fields into the meta box.
+        /**
+         * Framework method sets up all of the custom fields for a USC Screening and then enqueues some JS
+         *
+         * Fields added are:
+         * 01. start_date: the date that a screening will start showing
+         * 02. end_date: the final date for a screening
+         * 03. showtimes_repeatable: the time(s) of day that the screening will be showed
+         * 04. if_weekend_showtimes: a checkbox to indicate whether there will be alternative showtimes on weekends,
+         * 05. weekend_showtimes_repeatable: the alternative time(s) for the weekend screenings.
+         * 06. duration: length of a screening (in minutes)
+         * 07. rating: the rating for a screening (usually found on the ontario film board review website)
+         * 08. content_advisories: content warnings and advisories (also usually found on the ontario film board review website)
+         * 09. genre: the genre of a screening as a string
+         * 10. trailer_link: a link to the official trailer.  If this trailer comes from a Whitelisted Video Hosting website, the
+         *              trailer video will be embedded in the single page template
+         * 11. official_site_link: a link to this screening's official site
+         * 12. alert: (optional) a very important alert about this film to appear above the listing and the single page template
+         *
+         * @remark this is a pre-defined framework method
+         *
+         * @since 0.4.0
          */
         $this->addSettingFields(
             array(
@@ -175,7 +202,7 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
             )
         );
 
-
+        /* enqueue a javascript file with a very specialized function directly relating to this metabox */
         $this->enqueueScript(
             plugins_url('assets/js/reveal-alternate-showtimes-pane.js', __FILE__ ),   // source url or path
             array( 'usc_screenings' ),
@@ -187,81 +214,21 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
         );
     }
 
-    /** Draft if errors found in validation: http://stackoverflow.com/questions/5007748/modifying-wordpress-post-status-on-publish */
-    public function validation_USC_Screening_MetaBox( $aInput, $aOldInput ) {	// validation_{instantiated class name}
+    /**
+     * Function that validates values for usc_screenings.
+     *
+     * Decided it wasn't worth error-checking.  We can just trust James to be attentive
+     *
+     * @see: http://stackoverflow.com/questions/5007748/modifying-wordpress-post-status-on-publish
+     *
+     * @param array $aInput values in each of the input fields at the time of submitting the form
+     * @param array $aOldInput old values saved from before inputting the form.
+     * @return      array $aInput values as they were received
+     *
+     */    public function validation_USC_Screening_MetaBox( $aInput, $aOldInput ) {	// validation_{instantiated class name}
 
         $_fIsValid = true;
         $_aErrors = array();
-
-        // You can check the passed values and correct the data by modifying them.
-        //echo $this->oDebug->logArray( $aInput );
-
-        $non_empty_fields = array(
-
-            'job_description'   => 'Sorry, but Job Description cannot be empty.',
-            'apply_by_date'     => 'Yikes!  You forgot to put in an apply-by date.',
-            'job_description_file'  => 'Oh no! Please upload and select a job description file.'
-        );
-
-        // Validate the submitted data.
-        /*foreach( $non_empty_fields as $key => $value ) {
-
-            if ( empty( $aInput[$key] ) ) {
-
-                $_aErrors[$key] = __( $value, 'usc-screenings' );
-                $_fIsValid = false;
-            }
-        }
-
-        if( ! isset( $_aErrors['job_description_file'] ) ) {
-
-            //get only the file extension
-            $job_description_file_extension = pathinfo($aInput['job_description_file'], PATHINFO_EXTENSION);
-
-            $allowed_extensions = array(
-                'pdf',
-                'doc',
-                'docx'
-            );
-
-            if ( ! in_array($job_description_file_extension, $allowed_extensions) ) {
-
-                $_aErrors['job_description_file'] = __( 'Not an acceptable file type.  Please upload a PDF or a Word Document.', 'usc-screenings' );
-                $_fIsValid = false;
-            }
-            ///http://stackoverflow.com/questions/7952977/php-check-if-url-and-a-file-exists
-            elseif ( ! $this->web_item_exists( $aInput['job_description_file'] ) ){
-
-                $_aErrors['job_description_file'] = __( 'Sorry, but your URL doesn\'t appear to exist. Try uploading and selecting your file again.', 'usc-screenings' );
-                $_fIsValid = false;
-
-            }
-        }
-
-        if( ! filter_var( $aInput['application_link'], FILTER_VALIDATE_URL )  ) {
-
-            $_aErrors['application_link'] = __( 'Sorry, can you try a properly formatted URL?', 'usc-screenings' );
-            $_fIsValid = false;
-
-        }
-        */
-
-        if ( ! $_fIsValid ) {
-
-            $this->setFieldErrors( $_aErrors );
-            $this->setSettingNotice( __( '<pre>' . print_r($aInput, true) . '</pre><p>' . 'nothing' . '</p>', 'usc-screenings' ) );
-
-            //hacky, but fun!
-            add_filter( 'wp_insert_post_data', function( $data ) { //use ( $status ) {
-
-                $data['post_status'] = 'pending';
-
-                return $data;
-            });
-
-            return $aInput;
-
-        }
 
         return $aInput;
 
@@ -269,8 +236,11 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
 
     /**
      * Check if an item exists out there in the "ether".
+     * Could potentially be used to check for trailer/official site links if this was every extended to do that.
      *
      * @since    0.8.0
+     *
+     * @see: http://stackoverflow.com/questions/7952977/php-check-if-url-and-a-file-exists
      *
      * @param string $url - preferably a fully qualified URL
      * @return boolean - true if it is out there somewhere

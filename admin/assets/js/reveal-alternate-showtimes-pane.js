@@ -1,8 +1,10 @@
 /**
- * Created by Paul on 31/07/14.
+ * The only thing this file exists to do is reveal or hide a pane in the USC_Screening_MetaBox depending on a prior value that
+ * was selected.
+ *
+ * If the 'if_weekend_showtimes' checkboxs is selected, reveal the 'weekend_showtimes_repeatable' pane which
+ * allows the administrator to enter alternative weekend showtimes for films different than regular showtimes during the week
  */
-
-
 jQuery(function ($) {
     /* You can safely use $ in this code block to reference jQuery */
 
@@ -14,8 +16,6 @@ jQuery(function ($) {
 
         check_checked();
     });
-
-    //one method checks if the field is checked
 
     /**
      * OnClick function that calls 'check_paid' every time a radio button in the 'remuneration section is clicked'

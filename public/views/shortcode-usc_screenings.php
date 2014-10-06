@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Paul
- * Date: 20/08/14
- * Time: 12:40 AM
+ * Defines the HTML to be generated for a listing  of screenings
  */
 
 ob_start();

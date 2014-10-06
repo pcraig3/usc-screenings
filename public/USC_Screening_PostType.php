@@ -1,11 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Paul
- * Date: 28/07/14
- * Time: 12:34 AM
+ * USCScreening_PostType extends the AdminPageFramework_PostType class and creates a 'usc_screenings' as a WordPress Custom Post
+ * Type
+ * Also associates the 'Status' taxonomy with usc_screenings.
  */
-
 class USCScreening_PostType extends AdminPageFramework_PostType {
 
     /**
@@ -76,15 +74,13 @@ class USCScreening_PostType extends AdminPageFramework_PostType {
         add_filter( 'the_content', array( $this, 'replyToPrintOptionValues' ) );
 
         //add_filter( 'request', array( $this, 'replyToSortCustomColumn' ) );
-
     }
 
     /*
-     * Built-in callback methods
-     */
+    * Method I've largely tried to circumvent. Not really using it.
+    */
     public function columns_usc_screenings( $aHeaderColumns ) {	// columns_{post type slug}
 
-        /* @TODO: Maybe change this up a bit */
         return array_merge(
             $aHeaderColumns,
             array(
@@ -106,6 +102,13 @@ class USCScreening_PostType extends AdminPageFramework_PostType {
 
     /**
      * Modifies the output of the post content.
+     *
+     * If we wanted, we could define the output of single 'usc_screenings' here instead of having a template file
+     * (it makes use of the 'the_content' filter to insert whatever markup you'd like), but I figured that's probably
+     * less intuitive than working with a template file, so I've circumvented this method as well
+     *
+     * I've come up with a template file called single-usc_screenings, and so that's where to make the changes
+     * to the layout of a USC Screening.
      */
     public function replyToPrintOptionValues( $sContent ) {
 
@@ -165,7 +168,5 @@ class USCScreening_PostType extends AdminPageFramework_PostType {
         }
 
         return $html_string;
-
     }
-
 }

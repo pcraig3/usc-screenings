@@ -1,6 +1,14 @@
 <?php
 /**
- * USC Screenings.
+ * USC Screenings is more or less a standard Custom Post Type.
+ * It creates the 'usc_screenings' Post Type (meant to represent a screening at WesternFilm).
+ * Screenings might or might not be movies, but probably most of them will be.
+ *
+ * Instead of an archive page, this plugin generates a shortcode that creates listings of screenings
+ * The intention is that films can be separated into statuses like 'Coming Soon' and 'Now Playing' and disappear
+ * once their runtime has ended
+ *
+ * Uses the AdminPageFramework to create the admin page, and then uses filter.js to create a better archive page.
  *
  * @package   USC_Screenings
  * @author    Paul Craig <pcraig3@uwo.ca>
@@ -9,12 +17,6 @@
  */
 
 /**
- * Plugin class. This class should ideally be used to work with the
- * public-facing side of the WordPress site.
- *
- * If you're interested in introducing administrative or dashboard
- * functionality, then refer to `class-usc-screenings-admin.php`
- *
  * @package USC_Screenings
  * @author    Paul Craig <pcraig3@uwo.ca>
  */
@@ -52,10 +54,19 @@ class USC_Screenings {
      */
     protected static $instance = null;
 
-
+    /**
+     * @since 0.8.0
+     *
+     * @var string variable used so that the template-finding function works
+     */
     protected $usc_screenings_dir = null;
 
-    protected $server_timezone = null;
+    /**
+     * @var used for saving the default server timezone so that nothing odd happens with our time calculations
+     *
+     * @since 0.8.3
+     */
+    protected $date_default_timezone_get_status = null;
 
     /**
      * Initialize the plugin by setting localization and loading public scripts
@@ -87,26 +98,30 @@ class USC_Screenings {
 
         $this->add_screenings_post_type();
 
+        //add thumbnails to usc_screenings on init
         add_action( 'init', array( $this, 'explictly_add_usc_screenings_thumbnails' ) );
+
+        //create shortcodes on init
         add_action( 'init',  array( $this, 'register_shortcodes' ) );
 
+        //include the single-usc_screening template if a usc_screening is requested
         add_filter( 'template_include', array( $this, 'usc_screenings_set_template' ) ) ;
 
+        //add various classes to the body class in order to square our layout with the Divi Theme's
         add_filter( 'body_class', array( $this, 'usc_screenings_body_classes'), 100 );
-
-        /* #main-content .container:before */
     }
 
-    public function set_current_timezone() {
 
-        $this->server_timezone = date_default_timezone_get();
+    public function set_server_to_local_time() {
+
+        $this->date_default_timezone_get_status = date_default_timezone_get();
 
         date_default_timezone_set("America/Toronto");
     }
 
-    public function reset_timezone() {
+    public function set_server_back_to_default_time() {
 
-        date_default_timezone_set( $this->server_timezone );
+        date_default_timezone_set( $this->date_default_timezone_get_status );
     }
 
     /**
@@ -141,17 +156,20 @@ class USC_Screenings {
      * (ie, coming-soon, special-events, or whatever).
      *
      * If there is no status given, or the given status does not correspond to a status slug, or
-     * there are no Posts returned for the given status, this function returns a single paragprah to the
+     * there are no Posts returned for the given status, this function returns a single paragraph to the
      * screen with an error message/explanation.
      *
      * If there is a valid status, however, query the screenings whose end dates have not passed, ordered by their
      * starting date.
      * Then, once you have them, build the HTML for each one and return it to the screen.  Easy.
      *
+     * (Oh, and if there are no screenings with a valid date range for a given status, return a bit of text to the screen
+     * that explains this to our handsome, witty users)
+     *
      * @since    0.8.0
      *
-     * @param $atts     parameters entered in along with the shortcode
-     * @return string   the html for valid screenings, or an error message if none or found or the shortcode is used incorrectly
+     * @param array $atts   parameters entered in along with the shortcode
+     * @return string       the html for valid screenings, or an error message if none or found or the shortcode is used incorrectly
      */
     public function list_usc_screenings ( $atts ) {
 
@@ -242,27 +260,29 @@ class USC_Screenings {
     }
 
     /**
-     * Check if a movie is playing this week.  Basically, it is if it's the date of its first screening,
-     * the date of its final screening, or sometime in between.
+     * Check if a movie is playing this week.  Basically, it is if:
+     * 1. It is currently the same date as its first screening.
+     * 2. It is currently the date of its final screening.
+     * 3. It is currently a date which falls between its first and final screening
      *
      * @since   0.8.1
      *
-     * @param $start_date   the start_date of a screening
-     * @param $end_date     the end date of a screening
-     * @return bool         true if the current time falls on or between either day.  Else, false.
+     * @param string $start_date    the start_date of a screening
+     * @param string $end_date      the end date of a screening
+     * @return bool                 true if the current time falls on or between either day.  Else, false.
      */
     public function is_playing_this_week( $start_date, $end_date ) {
 
         if( empty($start_date) || empty($end_date) )
             return false;
 
-        $this->set_current_timezone();
+        $this->set_server_to_local_time();
 
         $start_date_timestamp = strtotime($start_date);
         $end_date_timestamp   = strtotime($end_date . "+23 hours"); //because if a movie ends today, it ends at the END of the day
         $now = time();
 
-        $this->reset_timezone();
+        $this->set_server_back_to_default_time();
 
         return ($start_date_timestamp < $now && $end_date_timestamp > $now);
     }
@@ -275,9 +295,9 @@ class USC_Screenings {
      *
      * @since    0.8.1
      *
-     * @param $start_date   the start date of our screening
-     * @param $end_date     the final date of our screening
-     * @return string       a formatted date-range string
+     * @param string $start_date    the start date of our screening
+     * @param string $end_date      the final date of our screening
+     * @return string               a formatted date-range string
      */
     public function return_date_range_string( $start_date, $end_date ) {
 
@@ -286,12 +306,12 @@ class USC_Screenings {
         if( empty( $start_date ) && empty( $end_date ) )
             return false;
 
-        $this->set_current_timezone();
+        $this->set_server_to_local_time();
 
         $start_date_timestamp = strtotime($start_date);
         $end_date_timestamp   = strtotime($end_date);
 
-        $this->reset_timezone();
+        $this->set_server_back_to_default_time();
 
 
         if( false !== $start_date_timestamp ) {
@@ -320,7 +340,6 @@ class USC_Screenings {
         $date_string .=         ( $start_month === $end_month ) ? $end_day : $end_month . ' ' . $end_day;
 
         return $date_string;
-
     }
 
     /**
@@ -330,7 +349,7 @@ class USC_Screenings {
      *
      * @since    0.7.0
      *
-     * @param $showtimes_array  an array of showtimes for this screening
+     * @param $showtimes_array  array of showtimes for this screening
      * @return string           a formatted string of all of the showtimes
      */
     public function generate_usc_screenings_shortcode_showtimes_HTML( $showtimes_array ) {
@@ -357,9 +376,9 @@ class USC_Screenings {
      *
      * @since   0.8.2
      *
-     * @param $showtimes_repeatable an array of showtimes ("07:30 pm", etc)
-     * @param $duration             the length of the movie in minutes ("162 mins")
-     * @return string               the HTML for listing the movie times
+     * @param array $showtimes_repeatable   an array of showtimes ("07:30 pm", etc)
+     * @param string $duration              length of the movie in minutes ("162 mins")
+     * @return string                       the HTML for listing the movie times
      */
     public function generate_usc_screenings_single_showtimes_HTML($showtimes_repeatable, $duration) {
 
@@ -392,14 +411,14 @@ class USC_Screenings {
 
 
     /**
-     * I flatter myself that this one should be pretty easily guessed.
+     * I flatter myself that this method should be pretty easily guessed.
      * Pass in a show time and the movie duration (in minutes) and watch as the end-time is calculated.
      *
      * @since   0.8.1
      *
-     * @param $showtime the time (07:33 pm or similar) of a film screening
-     * @param $duration the duration in minutes of the screening
-     * @return string   the time when the movie ends.
+     * @param string $showtime  the time (07:33 pm or similar) of a film screening
+     * @param string $duration  the duration in minutes of the screening
+     * @return string           the time when the movie ends.
      */
     public function calculate_time_interval( $showtime, $duration ) {
 
@@ -419,9 +438,9 @@ class USC_Screenings {
      *
      * @since    0.9.0
      *
-     * @param $days_array       an array of days for this screening
+     * @param array $days_array     an array of days for this screening
      * @param int $substr_length    an integer, if set, we cut down the individual day strings to this length
-     * @return string           a formatted string of all of the showtimes prepended by the number of days.
+     * @return string               a formatted string of all of the showtimes prepended by the number of days.
      */
     public function return_alternate_showtimes_date_string( $days_array, $substr_length = 0 ) {
 
@@ -451,17 +470,10 @@ class USC_Screenings {
             $showtimes_string .= ( !empty( $showtimes_string ) ) ? ' & ' . $last_day : $last_day;
         }
 
-        //@TODO: DELETE THIS AS SOON AS POSSIBLE
-        /*$showtimes_string = ucwords( $showtimes_string ) . ':</span>'
-            . $this->return_showtimes_string( $showtimes_array );*/
-
         $showtimes_string = ucwords( $showtimes_string );
 
         return $showtimes_string;
     }
-
-
-
 
     /**
      * *Some* themes don't support post-thumbnails.  This function makes sure that they do.
@@ -518,6 +530,9 @@ class USC_Screenings {
      * Checks to see if appropriate templates are present in active template directory.
      * Otherwises uses templates present in plugin's template directory.
      * Hooked onto template_include'
+     *
+     * **THIS MEANS THAT IF YOU WANT A CHANGE TO A TEMPLATE TO PROPAGATE, MAKE THE CHANGE TO THE TEMPLATE IN THE
+     * THEMES FOLDER, NOT THE TEMPLATE FILE IN THE FOLDER FOR THIS PLUGIN**
      *
      * @see     https://github.com/stephenharris/Event-Organiser/blob/1.7.3/includes/event-organiser-templates.php#L192
      * @author  Stephen Harris

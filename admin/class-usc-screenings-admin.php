@@ -2,6 +2,9 @@
 /**
  * USC Screenings
  *
+ * Haven't really done too much here except set up the USC Screenings Admin page stuff.
+ * But I mean, I don't have a Settings page for the plugin or anything.
+ *
  * @package   USC_Screenings_Admin
  * @author    Paul Craig <pcraig3@uwo.ca>
  * @license   GPL-2.0+
@@ -47,13 +50,6 @@ class USC_Screenings_Admin {
 	private function __construct() {
 
 		/*
-		 * - Uncomment following lines if the admin class should only be available for super admins
-		 */
-		/* if( ! is_super_admin() ) {
-			return;
-		} */
-
-		/*
 		 * Call $plugin_slug from public plugin class.
 		 */
 		$plugin = USC_Screenings::get_instance();
@@ -64,21 +60,28 @@ class USC_Screenings_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 
 		// Add the options page and menu item.
-		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
+		// add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 
 		// Add an action link pointing to the options page.
-		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
-		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
+		// $plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
+		// add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
-        //add_action( 'init', array( $this, 'add_screenings_post_type_admin' ), 25 );
         $this->add_screenings_post_type_admin();
 	}
 
+    /**
+     * Creates all of the admin menus for new Screening Post Type. You should see one.
+     *
+     * @since 1.0.0
+     */
     public function add_screenings_post_type_admin() {
 
         // Create meta boxes with form fields that appear in post definition pages (where you create a post) of the given post type.
         //include_once(  dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/example/APF_MetaBox_BuiltinFieldTypes.php' );
         include_once('USC_Screening_MetaBox.php');
+
+        //the USC_Screening_PostType has to be added in the public area so that it's available on the front-end of the plugin, but
+        //the USC_Screening_MetaBox is only for administrators trying to add new screenings.
         new USC_Screening_MetaBox(
             'usc_screenings_metabox',	// meta box ID
             __( 'Screening Details', 'usc-screenings' ),	// title
@@ -86,12 +89,6 @@ class USC_Screenings_Admin {
             'normal',	// context (what kind of metabox this is)
             'default'	// priority
         );
-
-        // Add fields in the taxonomy page
-        //include_once(  dirname( dirname( dirname( __FILE__ ) ) ) . '/admin-page-framework/example/APF_TaxonomyField.php' );
-        include_once('USCScreening_Status_TaxonomyField.php');
-        new USCScreenings_Status_TaxonomyField( 'screenings_status' );	 	// taxonomy slug
-
     }
 
         /**
