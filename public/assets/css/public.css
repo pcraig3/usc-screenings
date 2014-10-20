@@ -27,35 +27,6 @@
 /* ====== making everything look okay ===== */
 /*$alert-color--transparent: rgba(25, 165, 93, .85);*/
 /* 227, 211, 42, 1 */
-#back_to_home {
-  background-color: #EFEFEF !important; }
-  #back_to_home .et_pb_row {
-    padding: 0; }
-    #back_to_home .et_pb_row .et_pb_column {
-      padding-bottom: 0; }
-    #back_to_home .et_pb_row a.arrow_back {
-      color: #FFF;
-      background-color: #666;
-      text-align: center;
-      padding: 5px;
-      display: inline-block;
-      margin-top: 1em;
-      width: 100%;
-      transition: all 0.2s ease 0s;
-      margin-top: 0;
-      padding: 20px 0 18px 0;
-      color: white;
-      background-color: #222222;
-      font-family: 'bignoodletitlingoblique', Helvetica, Arial, sans-serif;
-      font-size: 2.2em; }
-      #back_to_home .et_pb_row a.arrow_back:hover {
-        background-color: #ff8730; }
-      #back_to_home .et_pb_row a.arrow_back:before {
-        content: "\4a";
-        font-family: 'ETmodules';
-        font-weight: 400;
-        margin-left: -0.55em; }
-
 .single-usc_screenings #main-content {
   background-color: #FBFBFB; }
   .single-usc_screenings #main-content .container {
@@ -99,7 +70,7 @@
   .type-usc_screenings .usc_screenings__alert .usc_screenings__alert__message {
     display: inline-block;
     cursor: default;
-    padding-left: 2.4em; }
+    padding-left: 2.4em; } 
   .shortcode-usc_screenings .usc_screenings__alert .icon_error-triangle:before,
   .type-usc_screenings .usc_screenings__alert .icon_error-triangle:before {
     font-size: 1.2em;
