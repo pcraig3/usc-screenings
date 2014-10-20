@@ -167,7 +167,8 @@ class USC_Screening_MetaBox extends AdminPageFramework_MetaBox {
                 'field_id'		=> 'content_advisories',
                 'type'			=> 'textarea',
                 'title'			=> __( 'Content Advisories', 'usc-screenings' ),
-                'description'	=> __( '(Newlines = hyphens)', 'usc-screenings' ),
+                'description'	=> __( 'A hyphen followed by a space (ie, " - WARNING") is rendered as a newline on the '
+                    .' public page for this Screening.', 'usc-screenings' ),
                 'help'			=> __( 'More detail on content advisories.', 'usc-screenings' ),
             ),
             array(

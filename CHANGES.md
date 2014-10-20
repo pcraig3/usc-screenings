@@ -1,37 +1,8 @@
-=== USC Screenings ===
-Contributors: pcraig3
-Donate link: ---
-Tags: usc
-Requires at least: 3.6
-Tested up to: 4.0
-Stable tag: 1.0.1
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-
-Plugin creates a new 'Screenings' Custom Post Type -- expects the Admin Page Framework to be included.
-
-== Description ==
-
-Plugin creates a new 'Screenings' Custom Post Type -- expects the Admin Page Framework to be included.
-Screenings, if it's ambiguous, are meant to be used for Western Film.
-
-List of features we want:
-
-*   Create a Screening in the backend
-*   Screening populates a list of screenings on the home page
-*   Define a custom template for a screening
-
-== Frequently Asked Questions ==
-
-= Show me a movie. =
-
-Sure.  http://westernusc.org/westernfilm/
-
 == Changelog ==
 
 = 1.0.1 =
-* Improved the error message returned by shortcode if an appropriate status is not defined
-* Minor improvement to a description in the Edit USC Screening admin page
+* Improved the error message returned by shortcode if an appropriate status is not defined  
+* Minor improvement to a description in the Edit USC Screening admin page  
 * Removed CSS rules governing the 'back to Western Film' button as they were already in child theme.
 
 = 1.0.0 =
@@ -75,8 +46,3 @@ Sure.  http://westernusc.org/westernfilm/
 
 = 0.3.0 =
 * USC Screenings being hacked together based heavily on our prior experience with USC Jobs.
-
-== Updates ==
-
-The basic structure of this plugin was cloned from the [WordPress-Plugin-Boilerplate](https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate) project.
-This plugin supports the [GitHub Updater](https://github.com/afragen/github-updater) plugin, so if you install that, this plugin becomes automatically updateable direct from GitHub. Any submission to WP.org repo will make this redundant.

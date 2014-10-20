@@ -25,11 +25,11 @@ class USC_Screenings {
     /**
      * Plugin version, used for cache-busting of style and script file references.
      *
-     * @since   1.0.0
+     * @since   1.0.1
      *
      * @var     string
      */
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.1';
 
     /**
      *
@@ -186,7 +186,7 @@ class USC_Screenings {
      * (Oh, and if there are no screenings with a valid date range for a given status, return a bit of text to the screen
      * that explains this to our handsome, witty users)
      *
-     * @since    0.8.0
+     * @since    1.0.1
      *
      * @param array $atts   parameters entered in along with the shortcode
      * @return string       the html for valid screenings, or an error message if none or found or the shortcode is used incorrectly
@@ -282,6 +282,8 @@ class USC_Screenings {
 
     /**
      * Private helper function that returns strings wrapped in <code> tags.  Used for an array_map in the above function
+     *
+     * @since 1.0.1
      *
      * @param string $array_element an array element to be wrapper
      * @return string               the array element wrapped in the HTML <code> tag
