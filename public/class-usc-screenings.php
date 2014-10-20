@@ -218,7 +218,8 @@ class USC_Screenings {
         //if the given status isn't valid, return list of valid statuses.
         if( !in_array($status, array_keys( $screenings_statuses ) ) ) {
             return '<p>Sorry mate, you\'ve picked a bad status.  Acceptable statuses are '
-            . trim( implode(', ',$screenings_statuses), ', ') . ".  Try again with one of those.</p>";
+            . trim( implode(', ', array_map( array( $this, 'wrap_strings_in_code_tags') , array_keys( $screenings_statuses ) ) ), ', ' )
+            . ".  Try again with one of those.</p>";
         }
 
         /*
@@ -277,6 +278,17 @@ class USC_Screenings {
         wp_reset_postdata();
 
         return $html_string;
+    }
+
+    /**
+     * Private helper function that returns strings wrapped in <code> tags.  Used for an array_map in the above function
+     *
+     * @param string $array_element an array element to be wrapper
+     * @return string               the array element wrapped in the HTML <code> tag
+     */
+    private function wrap_strings_in_code_tags($array_element) {
+
+        return '<code>' . $array_element . '</code>';
     }
 
     /**
