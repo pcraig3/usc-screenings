@@ -92,7 +92,7 @@ $title-icon-font-size: 1;
     position: absolute;
   }
 
-  .usc_screenings__link {
+  .usc_screenings__links .usc_screenings__link {
 
     @include usc_screening__button();
   }

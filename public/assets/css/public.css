@@ -42,8 +42,8 @@
   font-family: 'ETmodules';
   font-weight: 400;
   position: absolute; }
-.shortcode-usc_screenings .usc_screenings__link,
-.type-usc_screenings .usc_screenings__link {
+.shortcode-usc_screenings .usc_screenings__links .usc_screenings__link,
+.type-usc_screenings .usc_screenings__links .usc_screenings__link {
   color: #FFF;
   background-color: #666;
   text-align: center;
@@ -52,8 +52,8 @@
   margin-top: 1em;
   width: 100%;
   transition: all 0.2s ease 0s; }
-  .shortcode-usc_screenings .usc_screenings__link:hover,
-  .type-usc_screenings .usc_screenings__link:hover {
+  .shortcode-usc_screenings .usc_screenings__links .usc_screenings__link:hover,
+  .type-usc_screenings .usc_screenings__links .usc_screenings__link:hover {
     background-color: #ff8730; }
 .shortcode-usc_screenings .usc_screenings__alert,
 .type-usc_screenings .usc_screenings__alert {
