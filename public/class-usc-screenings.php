@@ -222,6 +222,9 @@ class USC_Screenings {
             . ".  Try again with one of those.</p>";
         }
 
+        //setting the 'end_date' for the query to Ontario's timezone rather than the 4-hours-ahead UTC time
+        $this->set_server_to_local_time();
+
         /*
         //http://wordpress.stackexchange.com/questions/50761/when-to-use-wp-query-query-posts-and-pre-get-posts
         http://codex.wordpress.org/Class_Reference/WP_Query#Taxonomy_Parameters
@@ -249,6 +252,8 @@ class USC_Screenings {
                 ),
             ),
         );
+
+        $this->set_server_back_to_default_time();
 
         $query = new WP_Query( $args );
 
