@@ -9,15 +9,6 @@ ob_start();
 
 <div class="usc_screenings shortcode-usc_screenings clearfix">
 
-    <?php
-
-    if( '' !== ( $alert = esc_html( get_post_meta( $post->ID, 'alert', true ) ) ) ) { ?>
-        <div class="usc_screenings__alert">
-            <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo $alert; ?></p>
-        </div><!-- end of .usc_screenings__alert -->
-
-    <?php  }  ?>
-
     <div class="media usc_screenings__content">
         <a href="<?php echo get_permalink(); ?>" class="img usc_screenings__img">
             <?php echo get_the_post_thumbnail( $post->ID, 'thumbnail' ); ?>
@@ -138,6 +129,16 @@ ob_start();
         ?>
 
     </div><!-- end .usc_screening__links -->
+
+    
+    <?php
+
+    if( '' !== ( $alert = esc_html( get_post_meta( $post->ID, 'alert', true ) ) ) ) { ?>
+        <div class="usc_screenings__alert">
+            <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo $alert; ?></p>
+        </div><!-- end of .usc_screenings__alert -->
+
+    <?php  }  ?>
 
 
 
