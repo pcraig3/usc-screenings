@@ -105,16 +105,6 @@ get_header(); ?>
         </div> <!-- .et_pb_column -->
         <div class="et_pb_column et_pb_column_2_3">
 
-
-            <?php
-
-            if( '' !== ( $alert = get_post_meta( $post->ID, 'alert', true ) ) )  { ?>
-            <div class="usc_screenings__alert">
-                <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo esc_html( $alert ); ?></p>
-            </div><!-- end of .usc_screenings__alert -->
-
-            <?php  }  ?>
-
             <?php
 
             /* ~start_date and ~end_date used to decide whether this film is playing this week or not. */
@@ -265,6 +255,16 @@ get_header(); ?>
 
                 ?>
             </div> <!-- .entry-content -->
+
+        <!-- Add alert here after entry -->
+        <?php
+
+        if( '' !== ( $alert = get_post_meta( $post->ID, 'alert', true ) ) )  { ?>
+        <div class="usc_screenings__alert">
+            <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo esc_html( $alert ); ?></p>
+        </div><!-- end of .usc_screenings__alert -->
+
+        <?php  }  ?>
 
 
         </div> <!-- .et_pb_column -->

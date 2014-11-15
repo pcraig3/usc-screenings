@@ -258,7 +258,7 @@ class USC_Screenings {
         $query = new WP_Query( $args );
 
         //if _have_posts(), this value is reset.
-        $html_string = '<p>Whoops! Didn\'t find anything under "' . $screenings_statuses[$status] . '" right now, sorry about that.</p>';
+        $html_string = '<p>Nothing is under "' . $screenings_statuses[$status] . '" right now, sorry about that.</p><p>Check back later for updates!</p>';
 
         if( $query->have_posts() ) {
 
@@ -374,9 +374,13 @@ class USC_Screenings {
             return "Starting on " . $start_month . " " . $start_day;
 
 
-        $date_string =         'Playing: ' . $start_month . ' ' . $start_day . ' - ';
-        //if the months are the same, then just return the end date.
-        $date_string .=         ( $start_month === $end_month ) ? $end_day : $end_month . ' ' . $end_day;
+        $date_string =  'Playing: ' . $start_month . ' ' . $start_day;
+        //Check logic when months and days are the same
+        if ($start_month === $end_month) {
+            if ($start_day !== $end_day)
+                $date_string .= ' - ' . $end_day;
+        } else
+            $date_string .= ' - ' . $end_month . ' ' . $end_day;
 
         return $date_string;
     }

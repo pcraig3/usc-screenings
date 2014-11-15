@@ -29,6 +29,10 @@ Sure.  http://westernusc.org/westernfilm/
 
 == Changelog ==
 
+= 1.0.2 =
+* Changed where alerts are displayed
+* Improved the way dates are displayed
+
 = 1.0.1 =
 * Improved the error message returned by shortcode if an appropriate status is not defined
 * Minor improvement to a description in the Edit USC Screening admin page
