@@ -25,11 +25,11 @@ class USC_Screenings {
     /**
      * Plugin version, used for cache-busting of style and script file references.
      *
-     * @since   1.0.1
+     * @since   1.0.2
      *
      * @var     string
      */
-    const VERSION = '1.0.1';
+    const VERSION = '1.0.2';
 
     /**
      *
@@ -186,7 +186,7 @@ class USC_Screenings {
      * (Oh, and if there are no screenings with a valid date range for a given status, return a bit of text to the screen
      * that explains this to our handsome, witty users)
      *
-     * @since    1.0.1
+     * @since    1.0.2
      *
      * @param array $atts   parameters entered in along with the shortcode
      * @return string       the html for valid screenings, or an error message if none or found or the shortcode is used incorrectly
@@ -332,7 +332,7 @@ class USC_Screenings {
      *
      * Makes accommodations in case there is no start or end date (or either) input
      *
-     * @since    0.8.1
+     * @since    1.0.2
      *
      * @param string $start_date    the start date of our screening
      * @param string $end_date      the final date of our screening
