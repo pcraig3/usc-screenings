@@ -21,6 +21,19 @@ ob_start();
                 </div><!-- end .usc_screenings__title -->
             </a>
 
+            <div class="usc_screenings__alerts">
+
+                    <?php
+
+                    if( '' !== ( $alert = esc_html( get_post_meta( $post->ID, 'alert', true ) ) ) ) { ?>
+                        <div class="usc_screenings__alert">
+                            <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo $alert; ?></p>
+                        </div><!-- end of .usc_screenings__alert -->
+
+                    <?php  }  ?>
+
+                </div>
+
             <div class="usc_screenings__excerpt">
                 <p><?php echo get_the_excerpt(); //we are assuming that there will either be an excerpt or description. ?>
                 </p>
@@ -103,19 +116,6 @@ ob_start();
         <?php  } //end of $date_string else statement ?>
 
     </div><!-- end .usc_screenings__showtimes -->
-
-    <div class="usc_screenings__alerts">
-
-        <?php
-
-        if( '' !== ( $alert = esc_html( get_post_meta( $post->ID, 'alert', true ) ) ) ) { ?>
-            <div class="usc_screenings__alert">
-                <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo $alert; ?></p>
-            </div><!-- end of .usc_screenings__alert -->
-
-        <?php  }  ?>
-
-    </div>
 
     <div class="usc_screenings__links">
 

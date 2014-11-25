@@ -62,7 +62,7 @@
   background-color: #2ea3f2;
   position: relative;
   margin-bottom: 1em;
-  font-size: 1.3em; }
+  font-size: 1em; }
   .shortcode-usc_screenings .usc_screenings__alerts .usc_screenings__alert:hover,
   .type-usc_screenings .usc_screenings__alert:hover {
     background-color: rgba(46, 163, 242, 0.8); }
@@ -73,15 +73,14 @@
     padding-left: 2.4em; }
   .shortcode-usc_screenings .usc_screenings__alerts .usc_screenings__alert .icon_error-triangle:before,
   .type-usc_screenings .usc_screenings__alert .icon_error-triangle:before {
-    font-size: 1.2em;
+    font-size: 1em;
     margin-left: -1.44em;
     content: "\e063";
     /* icon_error-triangle */
     color: #FFFFFF; }
 .shortcode-usc_screenings .usc_screenings__alerts {
   display: block;
-  position: absolute;
-  width: 100%;
+  position: relative;
 }
 
 .shortcode-usc_screenings {
@@ -96,9 +95,10 @@
     box-sizing: border-box; }
   .shortcode-usc_screenings .bd p,
   .shortcode-usc_screenings .bd p:last-of-type {
-    padding-bottom: .45em !important;
+    padding-bottom: .3em !important;
     line-height: 1.5em; }
   .shortcode-usc_screenings .usc_screenings__title {
+    display: block;
     font-size: 1.6em;
     color: #666;
     transition: all 0.2s ease 0s; }
