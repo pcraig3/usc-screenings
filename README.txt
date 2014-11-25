@@ -4,11 +4,7 @@ Donate link: ---
 Tags: usc
 Requires at least: 3.6
 Tested up to: 4.0
-<<<<<<< HEAD
-Stable tag: 1.0.2
-=======
 Stable tag: 1.0.3
->>>>>>> 39d3347652574f09e62efb151f5e9ef8b5ea3a68
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +28,9 @@ List of features we want:
 Sure.  http://westernusc.org/westernfilm/
 
 == Changelog ==
+
+= 1.0.3 =
+* Fixed where alerts are displayed, again
 
 = 1.0.2 =
 * Changed where alerts are displayed
