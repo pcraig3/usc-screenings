@@ -104,6 +104,19 @@ ob_start();
 
     </div><!-- end .usc_screenings__showtimes -->
 
+    <div class="usc_screenings__alerts">
+
+        <?php
+
+        if( '' !== ( $alert = esc_html( get_post_meta( $post->ID, 'alert', true ) ) ) ) { ?>
+            <div class="usc_screenings__alert">
+                <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo $alert; ?></p>
+            </div><!-- end of .usc_screenings__alert -->
+
+        <?php  }  ?>
+
+    </div>
+
     <div class="usc_screenings__links">
 
         <?php
@@ -128,21 +141,12 @@ ob_start();
 
         ?>
 
+
     </div><!-- end .usc_screening__links -->
-
-    
-    <?php
-
-    if( '' !== ( $alert = esc_html( get_post_meta( $post->ID, 'alert', true ) ) ) ) { ?>
-        <div class="usc_screenings__alert">
-            <p class="usc_screenings__alert__message etmodules icon_error-triangle usc_screenings__alert__icon"><?php echo $alert; ?></p>
-        </div><!-- end of .usc_screenings__alert -->
-
-    <?php  }  ?>
-
 
 
 </div><!-- end of .usc_screening-shortcode -->
+
 
 
 
