@@ -25,11 +25,19 @@ class USC_Screenings {
     /**
      * Plugin version, used for cache-busting of style and script file references.
      *
+<<<<<<< HEAD
      * @since   1.0.2
      *
      * @var     string
      */
     const VERSION = '1.0.2';
+=======
+     * @since   1.0.3
+     *
+     * @var     string
+     */
+    const VERSION = '1.0.3';
+>>>>>>> 39d3347652574f09e62efb151f5e9ef8b5ea3a68
 
     /**
      *

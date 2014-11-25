@@ -55,7 +55,7 @@
   .shortcode-usc_screenings .usc_screenings__links .usc_screenings__link:hover,
   .type-usc_screenings .usc_screenings__links .usc_screenings__link:hover {
     background-color: #ff8730; }
-.shortcode-usc_screenings .usc_screenings__alert,
+.shortcode-usc_screenings .usc_screenings__alerts .usc_screenings__alert,
 .type-usc_screenings .usc_screenings__alert {
   box-sizing: border-box;
   color: #ffffff;
@@ -63,21 +63,26 @@
   position: relative;
   margin-bottom: 1em;
   font-size: 1.3em; }
-  .shortcode-usc_screenings .usc_screenings__alert:hover,
+  .shortcode-usc_screenings .usc_screenings__alerts .usc_screenings__alert:hover,
   .type-usc_screenings .usc_screenings__alert:hover {
     background-color: rgba(46, 163, 242, 0.8); }
-  .shortcode-usc_screenings .usc_screenings__alert .usc_screenings__alert__message,
+  .shortcode-usc_screenings .usc_screenings__alerts .usc_screenings__alert .usc_screenings__alert__message,
   .type-usc_screenings .usc_screenings__alert .usc_screenings__alert__message {
     display: inline-block;
     cursor: default;
     padding-left: 2.4em; }
-  .shortcode-usc_screenings .usc_screenings__alert .icon_error-triangle:before,
+  .shortcode-usc_screenings .usc_screenings__alerts .usc_screenings__alert .icon_error-triangle:before,
   .type-usc_screenings .usc_screenings__alert .icon_error-triangle:before {
     font-size: 1.2em;
     margin-left: -1.44em;
     content: "\e063";
     /* icon_error-triangle */
     color: #FFFFFF; }
+.shortcode-usc_screenings .usc_screenings__alerts {
+  display: block;
+  position: absolute;
+  width: 100%;
+}
 
 .shortcode-usc_screenings {
   position: relative;

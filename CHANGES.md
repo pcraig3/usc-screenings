@@ -1,5 +1,11 @@
 == Changelog ==
 
+<<<<<<< HEAD
+=======
+= 1.0.3 =
+* Fixed where alerts are displayed, again
+
+>>>>>>> 39d3347652574f09e62efb151f5e9ef8b5ea3a68
 = 1.0.2 =
 * Changed where alerts are displayed
 * Improved the way dates are displayed
