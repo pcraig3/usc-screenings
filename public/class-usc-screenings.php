@@ -234,7 +234,7 @@ class USC_Screenings {
             'meta_key'   => 'start_date',
             'orderby'    => 'meta_value modified',
             'order'      => 'ASC',
-            //'posts_per_page' => '1',  this is effectively the 'limit'
+            'posts_per_page' => '-1',  //this is effectively the 'limit'
             'meta_query' => array(
                 //filter by movies which end today or later than today
                 array(

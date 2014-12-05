@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.4 =
+* Allowed more than 10 posts to appear on a page at once
+
 = 1.0.3 =
 * Fixed where alerts are displayed, again
 
