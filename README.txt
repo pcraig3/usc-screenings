@@ -4,7 +4,7 @@ Donate link: ---
 Tags: usc
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,9 @@ List of features we want:
 Sure.  http://westernusc.org/westernfilm/
 
 == Changelog ==
+
+= 1.0.4 =
+* Allowed more than 10 posts to appear on a page at once
 
 = 1.0.3 =
 * Fixed where alerts are displayed, again
